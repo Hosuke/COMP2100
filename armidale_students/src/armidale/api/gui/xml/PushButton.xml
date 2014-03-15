@@ -1,0 +1,6 @@
+<ArmidaleClass name="armidale.api.gui.PushButton"
+               extends="armidale.api.gui.Button"
+               abstract="no"
+>
+  
+</ArmidaleClass>

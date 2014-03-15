@@ -1,0 +1,8 @@
+<callback>
+  <method name="itemsSelected">
+    <parameter name="indices"
+               type="int[]"
+    />
+  </method>
+</callback>
+

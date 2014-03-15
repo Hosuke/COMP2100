@@ -1,0 +1,219 @@
+<project name="armidale" default="help" >
+
+  <property name="product"              value="armidale"/>
+  <property name="version"              value="0.9.6" />
+  <property name="short_name"           value="${product}-${version}" />
+  <property name="long_name"            value="${product}, version ${version}" />
+
+  <property name="backups"              value="backups" />
+  
+  <property name="developer_src"        value="src" />
+  <property name="developer_filesystem" value="filesystem" />
+  <property name="developer_doc"        value="documentation" />
+  <property name="developer_javadoc"    value="javadoc" />
+  
+  <property name="build"                value="build" />
+  <property name="build_jars"           value="${build}/jars" />
+  <property name="build_classes"        value="${build}/classes" />
+  <property name="build_distribution"   value="${build}/distribution" />
+  
+  <property name="javadoc_header"       value="${long_name}" />
+  <property name="javadoc_footer"       value="&lt;i&gt;Copyright &#169; 2000-2002 Shayne R Flint. All Rights Reserved.&lt;/i&gt;" />
+
+  <target name="show_config">
+    <echo message="" />
+    <echo message="product              = ${product}" />
+    <echo message="version              = ${version}" />
+    <echo message="short_name           = ${short_name}" />
+    <echo message="long_name            = ${long_name}" />
+    <echo message="" />    
+    <echo message="backups              = ${backups}" />
+    <echo message="" />    
+    <echo message="developer_src        = ${developer_src}" />
+    <echo message="developer_filesystem = ${developer_filesystem}" />
+    <echo message="developer_doc        = ${developer_doc}" />
+    <echo message="developer_javadoc    = ${developer_javadoc}" />
+    <echo message="" />
+    <echo message="build                = ${build}" />
+    <echo message="build_jars           = ${build_jars}" />
+    <echo message="build_classes        = ${build_classes}" />
+    <echo message="build_distribution   = ${build_distribution}" />
+    <echo message="" />
+    <echo message="javadoc_header       = ${javadoc_header}" />
+    <echo message="javadoc_footer       = ${javadoc_footer}" />
+  </target>
+
+  <target name="help">
+    <echo message="" />
+    <echo message="Available targets:" />
+    <echo message="" />
+    <echo message="        clean              - delete build tree and class files from ${developer_src} directory" />
+    <echo message="        compile_all        - compile entire system" />
+    <echo message="        compile_utilities  - compile utilities only" />
+    <echo message="        build_javadoc      - gerenate developer documentation" />
+    <echo message="        build_jar          - build armidale jar" />
+    <echo message="        build_distribution - generate distribution files" />
+    <echo message="        make_classes       - generate classes from XML" />
+    <echo message="        backup             - backup developer to '${backups}/[date]_[time]_${product}.tar.gz'" />
+    <echo message="        help               - show this help text" />
+    <echo message="        show_config        - show property values" />
+  </target>
+
+  
+  <target name="clean">
+    <delete dir="${build}" />
+    <delete>
+      <fileset dir="${developer_src}" includes="**/*.class" />
+    </delete>
+  </target>
+
+  
+  <target name="prepare">
+    <tstamp/>
+    <mkdir dir="${build}" />
+    <mkdir dir="${build_jars}" />
+    <mkdir dir="${build_classes}" />
+    <mkdir dir="${build_distribution}" />
+    <mkdir dir="${backups}" />
+  </target>
+
+  
+  <target name="compile_all" depends="prepare">
+    <javac srcdir="${developer_src}"
+           destdir="${build_classes}"
+    />
+  </target>
+
+  <target name="compile_utilities" depends="prepare">
+    <javac srcdir="${developer_src}"
+           destdir="${build_classes}"
+           includes="armidale/utilities/**,armidale/api/io/**,armidale/api/Version.java,armidale/api/util/**"
+    />
+  </target>
+
+  <target name="build_javadoc" depends="prepare">
+    <delete dir="${developer_javadoc}" />
+    <mkdir  dir="${developer_javadoc}" />
+    <exec executable="javadoc"
+    >
+      <arg line="-breakiterator"/>
+      <arg line="-overview &quot;${developer_src}/overview.html&quot;"/>
+      <arg line="-bottom &quot;${javadoc_footer}&quot;"/>
+      <arg line="-doctitle &quot;&lt;div&gt;&lt;img src='../documentation/images/armidale.png'; width=450 height=100 align=right border=0 alt='armidale intro logo'&gt;&lt;div&gt;&quot;"/>
+      <arg line="-windowtitle &quot;${javadoc_header}&quot;"/>
+      <arg line="-sourcepath &quot;${developer_src}&quot;"/>
+      <arg line="-subpackages armidale.api:armidale.browser:armidale.utilities:armidale.test"/>
+      <arg line="-exclude armidale.api.impl:armidale.api.gui.impl"/>
+      <arg line="-d &quot;${developer_javadoc}&quot;"/>
+      <arg line="-group &quot;armidale Application Programmer Interface&quot; &quot;armidale.api*&quot;"/>
+      <arg line="-group &quot;armidale Test Classes&quot; &quot;armidale.test*&quot;"/>
+      <arg line="-group &quot;armidale Utilities&quot; &quot;armidale.utilities*&quot;"/>
+      <arg line="-group &quot;armidale Browser&quot; &quot;armidale.browser*&quot;"/>
+    </exec>
+  </target>
+  
+  
+  <target name="build_jar" depends="compile_all">
+    <delete file="${build_jars}/${product}.jar" />
+    <jar jarfile="${build_jars}/${product}.jar"
+         manifest="${product}_manifest.txt"
+    >
+      <fileset dir = "${build_classes}"
+               includes="Home.class, armidale/api/**, armidale/launcher/**, armidale/test/**, armidale/utilities/preferences/**"
+      />
+    </jar>
+  </target>
+
+  
+  <target name="build_distribution" depends="compile_all, build_javadoc, build_jar">  
+  
+    <delete file="${build_distribution}/${short_name}-user.jar" />
+    <jar jarfile="${build_distribution}/${short_name}-user.jar"
+         manifest="user_manifest.txt"
+    >
+      <fileset dir="${build}"
+               includes="jars/**"
+      />
+      <fileset dir="."
+               includes="filesystem/**"
+	       excludes="filesystem/demos/**"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/utilities/install/UserInstaller.class, armidale/api/ProductInfo.class, armidale/api/Environment.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/api/ArmidaleException.class, armidale/api/UncheckedException.class, armidale/api/io/DirectoryException.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="Home.class, armidale/api/util/*"
+      />
+    </jar>
+
+    <delete file="${build_distribution}/${short_name}-documentation.jar" />
+    <jar jarfile="${build_distribution}/${short_name}-documentation.jar"
+         manifest="documentation_manifest.txt"
+    >
+      <fileset dir="."
+               includes="documentation/**"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/utilities/install/DocumentationInstaller.class, armidale/api/ProductInfo.class, armidale/api/Environment.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/api/ArmidaleException.class, armidale/api/UncheckedException.class, armidale/api/io/DirectoryException.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/api/util/*"
+      />
+    </jar>
+
+    <delete file="${build_distribution}/${short_name}-developer.jar" />
+    <jar jarfile="${build_distribution}/${short_name}-developer.jar"
+         manifest="developer_manifest.txt"
+    >
+      <fileset dir="."
+               includes="*.xml, *.txt, ${developer_src}/**, ${developer_javadoc}/**, ${developer_doc}/**, ${developer_filesystem}/**"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/utilities/install/DeveloperInstaller.class, armidale/api/ProductInfo.class, armidale/api/Environment.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="armidale/api/ArmidaleException.class, armidale/api/UncheckedException.class, armidale/api/io/DirectoryException.class"
+      />
+      <fileset dir="${build_classes}"
+               includes="Home.class, armidale/api/util/*"
+      />
+    </jar>
+  </target>
+
+  
+  <target name="make_classes" depends="compile_utilities">
+    <exec dir="${developer_src}"
+          executable="sh"
+          os="Linux"
+    >
+      <arg line="makeguiclasses -platforms swing"/>
+    </exec>
+  </target>  
+
+  
+  <target name="backup" depends="prepare">
+    <tar tarfile="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar"
+         basedir="."
+         includes="${developer_src}/**, ${developer_filesystem}/**, ${developer_doc}/**, *.xml, *.txt"
+    />
+    <gzip zipfile="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tgz"
+          src="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar"
+    />
+    <delete file="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar" />
+  </target>
+
+</project>
+
+
+
+
+
+
+
+

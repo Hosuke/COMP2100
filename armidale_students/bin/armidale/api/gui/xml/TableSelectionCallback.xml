@@ -1,0 +1,8 @@
+<callback>
+  <method name="rowsSelected">
+    <parameter name="indices"
+               type="int[]"
+    />
+  </method>
+</callback>
+

@@ -1,0 +1,71 @@
+<ArmidaleClass name="armidale.api.gui.GridPanelWidget"
+               extends="armidale.api.ArmidaleObject"
+               abstract="no"
+>
+
+  <attribute name="widget"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="gridX" 
+             type="int"
+             constants="armidale.api.gui.constants.GridCell"
+  />    
+  <attribute name="gridY" 
+             type="int"
+             constants="armidale.api.gui.constants.GridCell"
+  />   
+  <attribute name="gridWidth"
+             type="int"   
+             default="1"
+  />
+  <attribute name="gridHeight"
+             type="int"   
+             default="1"
+  />
+  <attribute name="weightX"
+             type="float"
+             default="0.5f"
+  />
+  <attribute name="weightY"
+             type="float"
+             default="0.5f"
+  />
+  <attribute name="anchor" 
+             type="int" 
+             constants="armidale.api.gui.constants.Compass"
+             default="CENTER"
+  />
+  <attribute name="fill"
+             type="int"
+             constants="armidale.api.gui.constants.FillMode"
+             default="BOTH"
+  />    
+  <attribute name="insets"
+             type="armidale.api.gui.Insets"
+             default="new Insets(0,0,0,0)"
+  />
+  <attribute name="internalPadX"
+             type="int"
+             default="0"
+  />
+  <attribute name="internalPadY"
+             type="int"
+             default="0"
+  />
+
+  <createMethod name="create">
+    <attribute name="widget"/>
+    <attribute name="gridX"/>
+    <attribute name="gridY"/>
+  </createMethod>
+  
+  <createMethod name="create">
+    <attribute name="widget"/>
+    <attribute name="gridX"/>
+    <attribute name="gridY"/>
+    <attribute name="gridWidth"/>
+    <attribute name="gridHeight"/>
+  </createMethod>
+  
+</ArmidaleClass>

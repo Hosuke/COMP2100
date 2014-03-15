@@ -1,0 +1,14 @@
+<ArmidaleClass name="armidale.api.gui.CheckBoxMenuItem"
+               extends="armidale.api.gui.MenuItem"
+               abstract="no"
+>
+
+  <include filename="ToggleCallback.xml"/>
+
+  <attribute name="selected"
+             type="boolean"
+             getName="isSelected"
+             default="false"
+  />
+    
+</ArmidaleClass>

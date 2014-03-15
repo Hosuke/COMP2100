@@ -1,0 +1,9 @@
+<ArmidaleClass name="armidale.api.gui.Window"
+               extends="armidale.api.gui.VisibleObject"
+               abstract="yes"
+>
+  <include filename="WindowCallback.xml"/>
+    
+  <method name="dispose"/>
+  
+</ArmidaleClass>

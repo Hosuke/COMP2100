@@ -1,0 +1,49 @@
+<ArmidaleClass  name="armidale.api.gui.SplitPanel"
+                extends="armidale.api.gui.Widget"
+                abstract="no"
+>
+
+  <attribute name="orientation"
+             type="int"
+             constants="armidale.api.gui.constants.Orientation"
+             default="HORIZONTAL"
+  />
+  
+  <attribute name="dividerLocation"
+             type="float"
+             default="0.5f"
+  />
+  
+  <attribute name="dividerSize"
+             type="int"
+             default="10"
+  />
+  
+  <attribute name="resizeWeight"
+             type="float"
+             default="0.5f"
+  />
+
+  <attribute name="expandable"
+             type="boolean"
+             getName="isExpandable"
+             default="false"
+  />
+  
+  <attribute name="leftWidget"
+             alternateGetName="getTopWidget"
+             alternateSetName="setTopWidget"
+             type="@armidale.api.gui.Widget"
+  >
+    <documentation>
+      the widget located to the left or above the divider
+    </documentation>
+  </attribute>
+
+  <attribute name="rightWidget"
+             alternateGetName="getBottomWidget"
+             alternateSetName="setBottomWidget"
+             type="@armidale.api.gui.Widget"
+  />
+
+</ArmidaleClass>

@@ -1,0 +1,30 @@
+<ArmidaleClass name="armidale.api.gui.TabbedPanel"
+               extends="armidale.api.gui.Widget"
+               abstract="no"
+>
+
+  <include filename="SelectionCallback.xml"/>
+  
+  <attribute name="selectedIndex"
+             type="int"
+             default="0"
+             access="WriteOnly"
+  />
+  
+  <attribute name="tabPlacement"
+             type="int"
+             constants="armidale.api.gui.constants.OrthogonalCompass"
+             default="NORTH"
+  />
+
+  <attribute name="tabLayout"
+             type="int"
+             constants="armidale.api.gui.constants.TabLayout"
+             default="WRAP"
+  />
+
+  <list name="Tab"
+        type="@armidale.api.gui.TabbedPanelWidget"
+  />
+    
+</ArmidaleClass>

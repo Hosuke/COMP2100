@@ -1,0 +1,11 @@
+<callback>
+  <method name="requestRows">
+    <parameter name="first"
+               type="int"
+    />
+    <parameter name="count"
+               type="int"
+    />    
+  </method>
+</callback>
+

@@ -1,0 +1,44 @@
+<ArmidaleClass name="armidale.api.gui.BoxPanel"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+>
+
+  <attribute name="orientation"
+             type="int"
+             constants="armidale.api.gui.constants.Orientation"
+             default="VERTICAL"
+  />
+  
+  <createMethod>
+    <attribute name="orientation"/>
+  </createMethod>
+
+  <method name="addHorizontalSpring"
+  />
+  
+  <method name="addHorizontalStrut">
+    <parameter name="width"
+               type="int"
+    />
+  </method>
+  
+  <method name="addVerticalSpring"
+  />
+  
+  <method name="addVerticalStrut">
+    <parameter name="height"
+               type="int"
+    />
+  </method>
+  
+  <method name="addRigidArea">
+    <parameter name="size"
+               type="armidale.api.gui.Size"
+    />
+  </method>
+  
+  <list name="widget"
+        type="@armidale.api.gui.Widget"
+  />
+
+</ArmidaleClass>

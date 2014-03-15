@@ -1,0 +1,18 @@
+<ArmidaleClass name="armidale.api.gui.VisibleObject"
+               extends="armidale.api.ArmidaleObject"
+               abstract="yes"
+>
+
+  <attribute name="visible"
+             type="boolean"
+             getName="isVisible"
+             default="false"
+  />
+
+  <method name="show"/>
+  <method name="hide"/>
+  <method name="refresh"/>
+
+  <include filename="VisibleObjectCallback.xml"/>
+  
+</ArmidaleClass>

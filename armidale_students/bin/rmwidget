@@ -1,0 +1,7 @@
+rm -iv armidale/api/gui/$1.java
+rm -iv armidale/api/gui/$1Factory.java
+rm -iv armidale/api/gui/local/swing/$1Impl.java
+rm -iv armidale/api/gui/distributed/Distributed$1.java
+rm -iv armidale/api/gui/distributed/client/$1Impl.java
+rm -iv armidale/api/gui/distributed/server/$1Impl.java
+

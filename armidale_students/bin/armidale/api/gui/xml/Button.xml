@@ -1,0 +1,22 @@
+<ArmidaleClass name="armidale.api.gui.Button"
+               extends="armidale.api.gui.Action"
+               abstract="yes"
+>
+
+  <attribute name="text"
+             type="String"
+             default="&quot;Button&quot;"
+   />
+  
+  <attribute name="icon"
+             type="@armidale.api.gui.Image"
+             default="null"
+  />
+
+  <attribute name="textAlignment"
+             type="int"
+             constants="armidale.api.gui.constants.OrthogonalCompass"
+             default="EAST"
+  />
+
+</ArmidaleClass>

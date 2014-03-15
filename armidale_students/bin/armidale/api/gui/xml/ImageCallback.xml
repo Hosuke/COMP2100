@@ -1,0 +1,10 @@
+<callback>
+  <method name="imageChanged"/>
+  <method name="error"/>
+  <method name="getFile">
+    <parameter name="filename"
+               type="String"
+    />
+  </method>
+</callback>
+

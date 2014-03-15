@@ -1,0 +1,14 @@
+<ArmidaleClass name="armidale.api.gui.Clive"
+               extends="armidale.api.gui.Action"
+               abstract="no"
+>
+
+  <attribute name="text"
+             type="String"
+             default="&quot;Button&quot;"
+   />
+  
+  <attribute name="fred"
+             type="int"
+   />
+</ArmidaleClass>

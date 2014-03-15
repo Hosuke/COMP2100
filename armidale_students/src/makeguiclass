@@ -1,0 +1,1 @@
+java -cp ../../build/classes armidale.utilities.makeclass.Main -source . -classid armidale/api/gui/xml/widget_ids.txt $2 $3 $4 $5 armidale/api/gui/xml/$1.xml

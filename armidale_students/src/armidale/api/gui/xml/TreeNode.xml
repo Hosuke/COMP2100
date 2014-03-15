@@ -1,0 +1,14 @@
+<ArmidaleClass name="armidale.api.gui.TreeNode"
+               extends="armidale.api.gui.Widget"
+               abstract="No"
+>
+
+  <attribute name="widget"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="children"
+             type="@armidale.api.gui.ListData"
+  />
+    
+</ArmidaleClass>

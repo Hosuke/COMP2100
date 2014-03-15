@@ -1,0 +1,37 @@
+<ArmidaleClass name="armidale.api.gui.Widget"
+               extends="armidale.api.gui.Component"
+               abstract="yes"
+>
+
+  <attribute name="preferredSize"
+             type="armidale.api.gui.Size"
+             access="writeOnly"
+  />
+  
+  <attribute name="minimumSize"
+             type="armidale.api.gui.Size"
+             access="writeOnly"
+  />
+  
+  <attribute name="maximumSize"
+             type="armidale.api.gui.Size"
+             access="writeOnly"
+  />
+  
+  <method name="setSize">
+    <parameter name="size"
+               type="armidale.api.gui.Size"
+    />
+  </method>
+       
+  <attribute name="alignmentX"
+             type="float"
+             default="0.5f"
+  />
+  
+  <attribute name="alignmentY"
+             type="float"
+             default="0.5f"
+  />
+  
+</ArmidaleClass>

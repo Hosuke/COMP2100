@@ -1,0 +1,40 @@
+<ArmidaleClass name="armidale.api.gui.LabeledWidget"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+>
+
+  <attribute name="image"
+             type="@armidale.api.gui.Image"
+  />
+  
+  <attribute name="text"
+             type="String"
+  />
+  
+  <attribute name="widget"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="textImageAlignment"
+             type="int"
+             constants="armidale.api.gui.constants.Compass"
+             default="EAST"
+  />
+
+  <attribute name="textImageGap"
+             type="int"
+             default="4"
+  />
+  
+  <attribute name="labelWidgetAlignment"
+             type="int"
+             constants="armidale.api.gui.constants.Compass"
+             default="NORTH_WEST"
+  />
+
+  <attribute name="labelWidgetGap"
+             type="int"
+             default="4"
+  />
+  
+</ArmidaleClass>

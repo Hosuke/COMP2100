@@ -1,0 +1,283 @@
+<HTML>
+<HEAD>
+<TITLE>SimpleApp.java</TITLE>
+<STYLE TYPE="text/css"><!--
+.syntax0 {
+}
+.syntax1 {
+color: #339900;
+font-style: italic;
+}
+.syntax2 {
+color: #339900;
+font-style: italic;
+}
+.syntax3 {
+color: #404040;
+}
+.syntax4 {
+color: #404040;
+}
+.syntax5 {
+color: #990033;
+font-weight: bold;
+font-style: italic;
+}
+.syntax6 {
+color: #0033cc;
+font-weight: bold;
+}
+.syntax7 {
+color: #0033cc;
+font-weight: bold;
+}
+.syntax8 {
+color: #0033cc;
+font-weight: bold;
+}
+.syntax9 {
+color: #000000;
+}
+.syntax10 {
+color: #0033cc;
+font-weight: bold;
+}
+.syntax11 {
+color: #000000;
+font-weight: bold;
+}
+.syntax12 {
+color: #009191;
+}
+.syntax13 {
+color: #ff0000;
+font-weight: bold;
+}
+.gutter {
+background: #ffffff;
+color: #000000;
+}
+.gutterH {
+background: #ffffff;
+color: #8080ff;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<PRE><SPAN CLASS="gutter">   1:</SPAN><SPAN CLASS="syntax1">/*</SPAN>
+<SPAN CLASS="gutter">   2:</SPAN><SPAN CLASS="syntax1"> *  Copyright (c) 2000-2002, Shayne R Flint</SPAN>
+<SPAN CLASS="gutter">   3:</SPAN><SPAN CLASS="syntax1"> *  All rights reserved.</SPAN>
+<SPAN CLASS="gutter">   4:</SPAN><SPAN CLASS="syntax1"> *</SPAN>
+<SPAN CLASS="gutterH">   5:</SPAN><SPAN CLASS="syntax1"> *  Redistribution and use in source and binary forms, with or without</SPAN>
+<SPAN CLASS="gutter">   6:</SPAN><SPAN CLASS="syntax1"> *  modification, are permitted provided that the following conditions</SPAN>
+<SPAN CLASS="gutter">   7:</SPAN><SPAN CLASS="syntax1"> *  are met:</SPAN>
+<SPAN CLASS="gutter">   8:</SPAN><SPAN CLASS="syntax1"> *</SPAN>
+<SPAN CLASS="gutter">   9:</SPAN><SPAN CLASS="syntax1"> *  1. Redistributions of source code must retain the above copyright</SPAN>
+<SPAN CLASS="gutterH">  10:</SPAN><SPAN CLASS="syntax1"> *  notice, this list of conditions and the following disclaimer.</SPAN>
+<SPAN CLASS="gutter">  11:</SPAN><SPAN CLASS="syntax1"> *</SPAN>
+<SPAN CLASS="gutter">  12:</SPAN><SPAN CLASS="syntax1"> *  2. Redistributions in binary form must reproduce the above copyright</SPAN>
+<SPAN CLASS="gutter">  13:</SPAN><SPAN CLASS="syntax1"> *  notice, this list of conditions and the following disclaimer in the</SPAN>
+<SPAN CLASS="gutter">  14:</SPAN><SPAN CLASS="syntax1"> *  documentation and/or other materials provided with the distribution.</SPAN>
+<SPAN CLASS="gutterH">  15:</SPAN><SPAN CLASS="syntax1"> *</SPAN>
+<SPAN CLASS="gutter">  16:</SPAN><SPAN CLASS="syntax1"> *  3. The name of the author may not be used to endorse or promote products</SPAN>
+<SPAN CLASS="gutter">  17:</SPAN><SPAN CLASS="syntax1"> *  derived from this software without specific prior written permission.</SPAN>
+<SPAN CLASS="gutter">  18:</SPAN><SPAN CLASS="syntax1"> *</SPAN>
+<SPAN CLASS="gutter">  19:</SPAN><SPAN CLASS="syntax1"> *  THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR</SPAN>
+<SPAN CLASS="gutterH">  20:</SPAN><SPAN CLASS="syntax1"> *  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES</SPAN>
+<SPAN CLASS="gutter">  21:</SPAN><SPAN CLASS="syntax1"> *  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.</SPAN>
+<SPAN CLASS="gutter">  22:</SPAN><SPAN CLASS="syntax1"> *  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,</SPAN>
+<SPAN CLASS="gutter">  23:</SPAN><SPAN CLASS="syntax1"> *  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT</SPAN>
+<SPAN CLASS="gutter">  24:</SPAN><SPAN CLASS="syntax1"> *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,</SPAN>
+<SPAN CLASS="gutterH">  25:</SPAN><SPAN CLASS="syntax1"> *  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY</SPAN>
+<SPAN CLASS="gutter">  26:</SPAN><SPAN CLASS="syntax1"> *  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</SPAN>
+<SPAN CLASS="gutter">  27:</SPAN><SPAN CLASS="syntax1"> *  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF</SPAN>
+<SPAN CLASS="gutter">  28:</SPAN><SPAN CLASS="syntax1"> *  THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</SPAN>
+<SPAN CLASS="gutter">  29:</SPAN><SPAN CLASS="syntax1"> */</SPAN>
+<SPAN CLASS="gutterH">  30:</SPAN> 
+<SPAN CLASS="gutter">  31:</SPAN><SPAN CLASS="syntax7">package</SPAN> armidale.test;
+<SPAN CLASS="gutter">  32:</SPAN>
+<SPAN CLASS="gutter">  33:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.Application;
+<SPAN CLASS="gutter">  34:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.ClassInformation;
+<SPAN CLASS="gutterH">  35:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.ProductInfo;
+<SPAN CLASS="gutter">  36:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.context.*;
+<SPAN CLASS="gutter">  37:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.context.clientserver.*;
+<SPAN CLASS="gutter">  38:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.context.platform.*;
+<SPAN CLASS="gutter">  39:</SPAN>
+<SPAN CLASS="gutterH">  40:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.gui.*;
+<SPAN CLASS="gutter">  41:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.gui.constants.*;
+<SPAN CLASS="gutter">  42:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.io.Debug;
+<SPAN CLASS="gutter">  43:</SPAN><SPAN CLASS="syntax7">import</SPAN> armidale.api.io.File;
+<SPAN CLASS="gutter">  44:</SPAN>
+<SPAN CLASS="gutterH">  45:</SPAN><SPAN CLASS="syntax7">import</SPAN> java.io.IOException;
+<SPAN CLASS="gutter">  46:</SPAN>
+<SPAN CLASS="gutter">  47:</SPAN><SPAN CLASS="syntax1">// This is a simple armidale application which will open a small frame</SPAN>
+<SPAN CLASS="gutter">  48:</SPAN><SPAN CLASS="syntax1">// with an image and button on it. A callback is defined to display</SPAN>
+<SPAN CLASS="gutter">  49:</SPAN><SPAN CLASS="syntax1">// a message on the server when the button is clicked.</SPAN>
+<SPAN CLASS="gutterH">  50:</SPAN><SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  51:</SPAN><SPAN CLASS="syntax1">// Because this is an armidale application, it can be run stand-alone or over</SPAN>
+<SPAN CLASS="gutter">  52:</SPAN><SPAN CLASS="syntax1">// a network using the armidale launcher.</SPAN>
+<SPAN CLASS="gutter">  53:</SPAN><SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  54:</SPAN>  
+<SPAN CLASS="gutterH">  55:</SPAN>
+<SPAN CLASS="gutter">  56:</SPAN><SPAN CLASS="syntax1">// All armidale applications must extend armidale.api.Application or an extension of it.</SPAN>
+<SPAN CLASS="gutter">  57:</SPAN><SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  58:</SPAN><SPAN CLASS="syntax6">public</SPAN> <SPAN CLASS="syntax8">class</SPAN> SimpleApp <SPAN CLASS="syntax6">extends</SPAN> Application <SPAN CLASS="syntax11">{</SPAN>  
+<SPAN CLASS="gutter">  59:</SPAN>
+<SPAN CLASS="gutterH">  60:</SPAN>
+<SPAN CLASS="gutter">  61:</SPAN>  <SPAN CLASS="syntax6">public</SPAN> <SPAN CLASS="syntax8">void</SPAN> <SPAN CLASS="syntax9">init</SPAN>() <SPAN CLASS="syntax11">{</SPAN>
+<SPAN CLASS="gutter">  62:</SPAN>
+<SPAN CLASS="gutter">  63:</SPAN>    <SPAN CLASS="syntax1">// This is where the main work is done. The init() method is declared in armidale.api.Application</SPAN>
+<SPAN CLASS="gutter">  64:</SPAN>    <SPAN CLASS="syntax1">// and is called as part of the application execution (see the armidale.api.Application.run()</SPAN>
+<SPAN CLASS="gutterH">  65:</SPAN>    <SPAN CLASS="syntax1">// method).</SPAN>
+<SPAN CLASS="gutter">  66:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  67:</SPAN>    
+<SPAN CLASS="gutter">  68:</SPAN>    <SPAN CLASS="syntax1">// We start by creating a frame using the armidale.api.gui.FrameFactory. This factory creates</SPAN>
+<SPAN CLASS="gutter">  69:</SPAN>    <SPAN CLASS="syntax1">// implementations of the armidale.api.gui.Frame interface based on the specified context (usually</SPAN>
+<SPAN CLASS="gutterH">  70:</SPAN>    <SPAN CLASS="syntax1">// server or local swing). The context parameter used below is declared in armidale.api.Application</SPAN>
+<SPAN CLASS="gutter">  71:</SPAN>    <SPAN CLASS="syntax1">// (our parent class) and is set by the environment starting the application. In the standalone</SPAN>
+<SPAN CLASS="gutter">  72:</SPAN>    <SPAN CLASS="syntax1">// case this is set in a main method like the one defined later in this class. In the case of a </SPAN>
+<SPAN CLASS="gutter">  73:</SPAN>    <SPAN CLASS="syntax1">// server environment, it is set by the armidale server in response to a connection</SPAN>
+<SPAN CLASS="gutter">  74:</SPAN>    <SPAN CLASS="syntax1">// request from a client.</SPAN>
+<SPAN CLASS="gutterH">  75:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  76:</SPAN>    <SPAN CLASS="syntax1">// The main point here is that the application developer doesn't have to worry about what</SPAN>
+<SPAN CLASS="gutter">  77:</SPAN>    <SPAN CLASS="syntax1">// context is set to. He just passes it as a parameter the the various factories and other</SPAN>
+<SPAN CLASS="gutter">  78:</SPAN>    <SPAN CLASS="syntax1">// API methods.</SPAN>
+<SPAN CLASS="gutter">  79:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH">  80:</SPAN>    Frame frame <SPAN CLASS="syntax11">=</SPAN> FrameFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutter">  81:</SPAN>
+<SPAN CLASS="gutter">  82:</SPAN>    
+<SPAN CLASS="gutter">  83:</SPAN>    <SPAN CLASS="syntax1">// Armidale handles events using a callback mechanism. When an event is generated by a widget</SPAN>
+<SPAN CLASS="gutter">  84:</SPAN>    <SPAN CLASS="syntax1">// (eg. a user clicks a button) a specific method of each associated callback object is called. </SPAN>
+<SPAN CLASS="gutterH">  85:</SPAN>    <SPAN CLASS="syntax1">// For example, when a Frame is closed, a frame close event is generated. This</SPAN>
+<SPAN CLASS="gutter">  86:</SPAN>    <SPAN CLASS="syntax1">// event results in a call to the windowClosing() method of each associate WindowCallback object.</SPAN>
+<SPAN CLASS="gutter">  87:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  88:</SPAN>    <SPAN CLASS="syntax1">// In the following statement we add a callback to the frame to handle window close events</SPAN>
+<SPAN CLASS="gutter">  89:</SPAN>    <SPAN CLASS="syntax1">// (ie. when the user clicks the close icon at the top of the window). As a convenience, armidale</SPAN>
+<SPAN CLASS="gutterH">  90:</SPAN>    <SPAN CLASS="syntax1">// includes a simple class (armidale.api.gui.WindowCloseCallback) that implements various</SPAN>
+<SPAN CLASS="gutter">  91:</SPAN>    <SPAN CLASS="syntax1">// options regarding the closing of frames. Here we have chosen to stop the application when</SPAN>
+<SPAN CLASS="gutter">  92:</SPAN>    <SPAN CLASS="syntax1">// the user closes the frame.</SPAN>
+<SPAN CLASS="gutter">  93:</SPAN>    <SPAN CLASS="syntax1">//    </SPAN>
+<SPAN CLASS="gutter">  94:</SPAN>    frame.<SPAN CLASS="syntax9">addWindowCallback</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">WindowCloseCallback</SPAN>(context, WindowCloseCallback.STOP_APPLICATION_ON_CLOSE));
+<SPAN CLASS="gutterH">  95:</SPAN>    
+<SPAN CLASS="gutter">  96:</SPAN>    
+<SPAN CLASS="gutter">  97:</SPAN>    <SPAN CLASS="syntax1">// Complete the initialization of the frame by setting its title, size etc.</SPAN>
+<SPAN CLASS="gutter">  98:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter">  99:</SPAN>    frame.<SPAN CLASS="syntax9">setTitle</SPAN>(<SPAN CLASS="syntax3">&quot;Simple Application&quot;</SPAN>);
+<SPAN CLASS="gutterH"> 100:</SPAN>    frame.<SPAN CLASS="syntax9">setSize</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">Size</SPAN>(<SPAN CLASS="syntax12">420</SPAN>, <SPAN CLASS="syntax12">200</SPAN>));
+<SPAN CLASS="gutter"> 101:</SPAN>    frame.<SPAN CLASS="syntax9">setAlignment</SPAN>(Frame.CENTER);
+<SPAN CLASS="gutter"> 102:</SPAN>    frame.<SPAN CLASS="syntax9">setResizable</SPAN>(<SPAN CLASS="syntax4">false</SPAN>);
+<SPAN CLASS="gutter"> 103:</SPAN>
+<SPAN CLASS="gutter"> 104:</SPAN>    
+<SPAN CLASS="gutterH"> 105:</SPAN>    <SPAN CLASS="syntax1">// The image and button will be displayed on a BorderPanel. Create the main panel</SPAN>
+<SPAN CLASS="gutter"> 106:</SPAN>    <SPAN CLASS="syntax1">// and set its background color. Note that the Color class here is an armidale.api.gui.Color,</SPAN>
+<SPAN CLASS="gutter"> 107:</SPAN>    <SPAN CLASS="syntax1">// not a java.awt.Color</SPAN>
+<SPAN CLASS="gutter"> 108:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 109:</SPAN>    BorderPanel  mainPanel    <SPAN CLASS="syntax11">=</SPAN> BorderPanelFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutterH"> 110:</SPAN>    mainPanel.<SPAN CLASS="syntax9">setBackgroundColor</SPAN>(Color.WHITE);
+<SPAN CLASS="gutter"> 111:</SPAN>
+<SPAN CLASS="gutter"> 112:</SPAN>    
+<SPAN CLASS="gutter"> 113:</SPAN>    <SPAN CLASS="syntax1">// Create the image and set the image data to the contents of a specified file.</SPAN>
+<SPAN CLASS="gutter"> 114:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH"> 115:</SPAN>    <SPAN CLASS="syntax1">// By using the setFile() method to set the image data, this application, when run on a server,</SPAN>
+<SPAN CLASS="gutter"> 116:</SPAN>    <SPAN CLASS="syntax1">// will ask the client to try and load the image from the client filesystem. If the image</SPAN>
+<SPAN CLASS="gutter"> 117:</SPAN>    <SPAN CLASS="syntax1">// is not available on the client, it will downloaded from the server.</SPAN>
+<SPAN CLASS="gutter"> 118:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 119:</SPAN>    Image        image        <SPAN CLASS="syntax11">=</SPAN> ImageFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutterH"> 120:</SPAN>    image.<SPAN CLASS="syntax9">setFile</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">File</SPAN>(<SPAN CLASS="syntax3">&quot;images/armidaledemo.png&quot;</SPAN>));
+<SPAN CLASS="gutter"> 121:</SPAN>
+<SPAN CLASS="gutter"> 122:</SPAN>    
+<SPAN CLASS="gutter"> 123:</SPAN>    <SPAN CLASS="syntax1">// Create a label, based on the above image and set its alignment</SPAN>
+<SPAN CLASS="gutter"> 124:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH"> 125:</SPAN>    Label        label        <SPAN CLASS="syntax11">=</SPAN> LabelFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutter"> 126:</SPAN>    label.<SPAN CLASS="syntax9">setImage</SPAN>(image);
+<SPAN CLASS="gutter"> 127:</SPAN>    label.<SPAN CLASS="syntax9">setAlignment</SPAN>(Label.CENTER);
+<SPAN CLASS="gutter"> 128:</SPAN>
+<SPAN CLASS="gutter"> 129:</SPAN>    
+<SPAN CLASS="gutterH"> 130:</SPAN>    <SPAN CLASS="syntax1">// Add the label created above to the main panel. To add a widget to a border panel, it needs to </SPAN>
+<SPAN CLASS="gutter"> 131:</SPAN>    <SPAN CLASS="syntax1">// be wrapped up in a BorderPanelWidget along with its position (constraints) on the border panel</SPAN>
+<SPAN CLASS="gutter"> 132:</SPAN>    <SPAN CLASS="syntax1">// (ie. north, south, east, west or center). Note that this pattern is used for many of the armidale</SPAN>
+<SPAN CLASS="gutter"> 133:</SPAN>    <SPAN CLASS="syntax1">// panels (eg. GridPanel and GridPanelWidget).</SPAN>
+<SPAN CLASS="gutter"> 134:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH"> 135:</SPAN>    mainPanel.<SPAN CLASS="syntax9">addWidget</SPAN>(BorderPanelWidgetFactory.<SPAN CLASS="syntax9">create</SPAN>(context, label, BorderPanelWidget.CENTER));
+<SPAN CLASS="gutter"> 136:</SPAN>
+<SPAN CLASS="gutter"> 137:</SPAN>    
+<SPAN CLASS="gutter"> 138:</SPAN>    <SPAN CLASS="syntax1">// Following the same pattern of widget creation, we now create a button and set some its</SPAN>
+<SPAN CLASS="gutter"> 139:</SPAN>    <SPAN CLASS="syntax1">// properties</SPAN>
+<SPAN CLASS="gutterH"> 140:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 141:</SPAN>    PushButton   testButton   <SPAN CLASS="syntax11">=</SPAN> PushButtonFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutter"> 142:</SPAN>    testButton.<SPAN CLASS="syntax9">setText</SPAN>(<SPAN CLASS="syntax3">&quot;Test Events&quot;</SPAN>);
+<SPAN CLASS="gutter"> 143:</SPAN>    testButton.<SPAN CLASS="syntax9">setPreferredSize</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">Size</SPAN>(<SPAN CLASS="syntax12">150</SPAN>, <SPAN CLASS="syntax12">25</SPAN>));
+<SPAN CLASS="gutter"> 144:</SPAN>
+<SPAN CLASS="gutterH"> 145:</SPAN>    
+<SPAN CLASS="gutter"> 146:</SPAN>    <SPAN CLASS="syntax1">// For convenience, armidale provides a Debug implementation of all callback classes.</SPAN>
+<SPAN CLASS="gutter"> 147:</SPAN>    <SPAN CLASS="syntax1">// These Debug classes print details of events generated by associated widgets.</SPAN>
+<SPAN CLASS="gutter"> 148:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 149:</SPAN>    <SPAN CLASS="syntax1">// In the following code we add to the button a pre-built ActionCallbackDebug object which displays</SPAN>
+<SPAN CLASS="gutterH"> 150:</SPAN>    <SPAN CLASS="syntax1">// a debug message when the button is pressed.</SPAN>
+<SPAN CLASS="gutter"> 151:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 152:</SPAN>    testButton.<SPAN CLASS="syntax9">addActionCallback</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">ActionCallbackDebug</SPAN>(context));
+<SPAN CLASS="gutter"> 153:</SPAN>
+<SPAN CLASS="gutter"> 154:</SPAN>    
+<SPAN CLASS="gutterH"> 155:</SPAN>    <SPAN CLASS="syntax1">// We are now going to create a FlowPanel on which to place the Button. This panel will, in turn,</SPAN>
+<SPAN CLASS="gutter"> 156:</SPAN>    <SPAN CLASS="syntax1">// be placed on the main border panel created above.</SPAN>
+<SPAN CLASS="gutter"> 157:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 158:</SPAN>    FlowPanel    buttonPanel  <SPAN CLASS="syntax11">=</SPAN> FlowPanelFactory.<SPAN CLASS="syntax9">create</SPAN>(context);
+<SPAN CLASS="gutter"> 159:</SPAN>    buttonPanel.<SPAN CLASS="syntax9">setBackgroundColor</SPAN>(Color.WHITE);
+<SPAN CLASS="gutterH"> 160:</SPAN>    buttonPanel.<SPAN CLASS="syntax9">setHorizontalGap</SPAN>(<SPAN CLASS="syntax12">6</SPAN>);
+<SPAN CLASS="gutter"> 161:</SPAN>    buttonPanel.<SPAN CLASS="syntax9">setVerticalGap</SPAN>(<SPAN CLASS="syntax12">6</SPAN>);
+<SPAN CLASS="gutter"> 162:</SPAN>    
+<SPAN CLASS="gutter"> 163:</SPAN>    
+<SPAN CLASS="gutter"> 164:</SPAN>    <SPAN CLASS="syntax1">// Now add the button to the FlowPanel. There are no constraints applicable to widgets placed on a </SPAN>
+<SPAN CLASS="gutterH"> 165:</SPAN>    <SPAN CLASS="syntax1">// flow panel, so we don't use a special wrapper class like the BorderPanelWidget used above.</SPAN>
+<SPAN CLASS="gutter"> 166:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 167:</SPAN>    buttonPanel.<SPAN CLASS="syntax9">addWidget</SPAN>(testButton);
+<SPAN CLASS="gutter"> 168:</SPAN>
+<SPAN CLASS="gutter"> 169:</SPAN>    
+<SPAN CLASS="gutterH"> 170:</SPAN>    <SPAN CLASS="syntax1">// Now add the button panel to the south of the main border panel.</SPAN>
+<SPAN CLASS="gutter"> 171:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 172:</SPAN>    mainPanel.<SPAN CLASS="syntax9">addWidget</SPAN>(BorderPanelWidgetFactory.<SPAN CLASS="syntax9">create</SPAN>(context, buttonPanel, BorderPanelWidget.SOUTH));
+<SPAN CLASS="gutter"> 173:</SPAN>    
+<SPAN CLASS="gutter"> 174:</SPAN>    
+<SPAN CLASS="gutterH"> 175:</SPAN>    <SPAN CLASS="syntax1">// Next, we need to add the main panel (with its image and flow panel containing the button) to the</SPAN>
+<SPAN CLASS="gutter"> 176:</SPAN>    <SPAN CLASS="syntax1">// frame. Frames have a tool bar, status bar and content area, each of which contain a single</SPAN>
+<SPAN CLASS="gutter"> 177:</SPAN>    <SPAN CLASS="syntax1">// widget. Here we use setContent() to set the content of the frame to the main panel we</SPAN>
+<SPAN CLASS="gutter"> 178:</SPAN>    <SPAN CLASS="syntax1">// created above.</SPAN>
+<SPAN CLASS="gutter"> 179:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH"> 180:</SPAN>    frame.<SPAN CLASS="syntax9">setContent</SPAN>(mainPanel);
+<SPAN CLASS="gutter"> 181:</SPAN>    
+<SPAN CLASS="gutter"> 182:</SPAN>    <SPAN CLASS="syntax1">// And finaly, we make the frame visible.</SPAN>
+<SPAN CLASS="gutter"> 183:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 184:</SPAN>    frame.<SPAN CLASS="syntax9">show</SPAN>();
+<SPAN CLASS="gutterH"> 185:</SPAN>  <SPAN CLASS="syntax11">}</SPAN>
+<SPAN CLASS="gutter"> 186:</SPAN>
+<SPAN CLASS="gutter"> 187:</SPAN>  
+<SPAN CLASS="gutter"> 188:</SPAN>  
+<SPAN CLASS="gutter"> 189:</SPAN>  <SPAN CLASS="syntax1">// A main method is required if you want to be able to run an application</SPAN>
+<SPAN CLASS="gutterH"> 190:</SPAN>  <SPAN CLASS="syntax1">// stand-alone. The pattern of this main is fairly common in Java applications, </SPAN>
+<SPAN CLASS="gutter"> 191:</SPAN>  <SPAN CLASS="syntax1">// in that it creates an instance of the enclosing class. In the case of armidale,</SPAN>
+<SPAN CLASS="gutter"> 192:</SPAN>  <SPAN CLASS="syntax1">// it must also set the context in which to run the application. To run the application</SPAN>
+<SPAN CLASS="gutter"> 193:</SPAN>  <SPAN CLASS="syntax1">// locally, we need to use the SwingContext which will cause the various widget factories</SPAN>
+<SPAN CLASS="gutter"> 194:</SPAN>  <SPAN CLASS="syntax1">// to create objects that are implemented using swing. These object will therefore be</SPAN>
+<SPAN CLASS="gutterH"> 195:</SPAN>  <SPAN CLASS="syntax1">// displayed on the local computer.</SPAN>
+<SPAN CLASS="gutter"> 196:</SPAN>  <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 197:</SPAN>  <SPAN CLASS="syntax6">public</SPAN> <SPAN CLASS="syntax6">static</SPAN> <SPAN CLASS="syntax8">void</SPAN> <SPAN CLASS="syntax9">main</SPAN>(String[] args) <SPAN CLASS="syntax11">{</SPAN>
+<SPAN CLASS="gutter"> 198:</SPAN>    
+<SPAN CLASS="gutter"> 199:</SPAN>    <SPAN CLASS="syntax1">// create an instance of SimpleApp</SPAN>
+<SPAN CLASS="gutterH"> 200:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 201:</SPAN>    SimpleApp  app  <SPAN CLASS="syntax11">=</SPAN> <SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">SimpleApp</SPAN>();
+<SPAN CLASS="gutter"> 202:</SPAN>    
+<SPAN CLASS="gutter"> 203:</SPAN>    <SPAN CLASS="syntax1">// set the apps context to an instance of SwingContext. </SPAN>
+<SPAN CLASS="gutter"> 204:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutterH"> 205:</SPAN>    app.<SPAN CLASS="syntax9">setContext</SPAN>(<SPAN CLASS="syntax6">new</SPAN> <SPAN CLASS="syntax9">SwingContext</SPAN>());
+<SPAN CLASS="gutter"> 206:</SPAN>    
+<SPAN CLASS="gutter"> 207:</SPAN>    <SPAN CLASS="syntax1">// the application is now ready to go. So start it.</SPAN>
+<SPAN CLASS="gutter"> 208:</SPAN>    <SPAN CLASS="syntax1">//</SPAN>
+<SPAN CLASS="gutter"> 209:</SPAN>    app.<SPAN CLASS="syntax9">start</SPAN>();
+<SPAN CLASS="gutterH"> 210:</SPAN>  <SPAN CLASS="syntax11">}</SPAN>
+<SPAN CLASS="gutter"> 211:</SPAN>
+<SPAN CLASS="gutter"> 212:</SPAN><SPAN CLASS="syntax11">}</SPAN>
+<SPAN CLASS="gutter"> 213:</SPAN>
+</PRE></BODY>
+</HTML>
+

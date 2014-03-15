@@ -1,0 +1,17 @@
+<ArmidaleClass name="armidale.api.gui.Action"
+               extends="armidale.api.gui.Widget"
+               abstract="yes"
+>
+  <documentation>
+    <p>
+    All gui widgets that interact with the user are derived ultimately from
+    the <tt>ActionWidget</tt> interface.
+    </p>
+    <p>
+    This is a some more junk for test purposes.
+    </p>
+  </documentation>
+  
+  <include filename="ActionCallback.xml"/>
+    
+</ArmidaleClass>

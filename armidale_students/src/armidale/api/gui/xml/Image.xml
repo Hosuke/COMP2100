@@ -1,0 +1,31 @@
+<ArmidaleClass name="armidale.api.gui.Image"
+               extends="armidale.api.ArmidaleObject"
+               abstract="no"
+>
+
+  <include filename="ImageCallback.xml"/>
+  
+  <attribute name="imageData"
+             type="armidale.api.structures.ByteArray"
+             access="WriteOnly"
+  />
+    
+  <attribute name="size"
+             type="armidale.api.gui.Size"
+  />
+    
+  <attribute name="file"
+             type="armidale.api.io.File"
+             access="WriteOnly"
+  />
+  
+  <attribute name="description"
+             type="String"
+             default="&quot;&lt;image&gt;&quot;"
+  />
+ 
+  <createMethod name="create">
+    <attribute name="file"/>
+  </createMethod>
+ 
+</ArmidaleClass>

@@ -1,0 +1,14 @@
+<callback>
+  <method name="requestChildren">
+    <parameter name="parent"
+               type="@armidale.api.ArmidaleObject"
+    />
+    <parameter name="first"
+               type="int"
+    />
+    <parameter name="count"
+               type="int"
+    />    
+  </method>
+</callback>
+

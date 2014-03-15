@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+  <title>sample application</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>SimpleApp - a sample application</h1>
+
+    <h2>The Source Code</h2>
+    
+      <p class=L2>The commented source code of SimpleApp can be found <a href="simpleapp_source.html">here.</a>
+      </p>
+      
+    <h2>Compiling SimpleApp</h2>
+    
+      <p class=L2>The source file for <b>SimpleApp</b> (SimpleApp.java) is available in the 
+      <font class=code>developer/src/armidale/test</font> directory. You can copy this code to your own working directory, 
+      remove or change the package statement if required, and compile it using the standard Java compiler.
+      </p>
+    
+        <p class=L3Code>
+          javac -classpath &lt;classpath&gt; SimpleApp.java
+        </p>
+      
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3><b>&lt;classpath&gt;</b> includes <b>armidale.jar</b>.
+        </p>
+      
+    <h2>Testing SimpleApp locally</h2>
+    
+      <p class=L2>Once compiled, <b>SimpleApp</b> can be tested stand-alone using the following command:
+      </p>
+  
+        <p class=L3Code>
+          java -classpath &lt;classpath&gt; SimpleApp
+        </p>
+      
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3><b>&lt;classpath&gt;</b> includes <b>armidale.jar</b>.
+        </p>
+      
+      <p class=L2>The following window should appear.
+      </p>
+      
+        <div class="center">
+          <a href="images/simpleapp.png" type="image/png"><img src="images/simpleapp-sml.png" width="200" height="106" border="0"/></a>
+        </div>
+
+    <h2>Installing your application on an armidale server</h2>
+    
+      <p class=L2>Once <b>SimpleApp</b> has been compiled using a standard Java compiler, it can be installed on a server
+      by simply copying its class file or a jar containing the class file to a directory on the
+      <font class=arm>armidale</font> servers Java class path. The easiest place to put them is in the 
+      <b>&lt;install_dir&gt;/jars</b> directory.
+      </p>
+      
+    <h2>Running the armidale server</h2>
+
+      <p class=L2>Once <b>SimpleApp</b> is installed, you can start the <font class=arm>armidale</font> server using the
+      following command.
+      </p>
+   
+        <p class=L3Code>java -cp &lt;install_dir&gt;/jars/armidale.jar:&lt;classpath&gt; armidale.api.Server -port &lt;port&gt;
+        </p>
+        
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3><b>&lt;install_dir&gt;</b> is the name of the directory in which <font class=arm>armidale</font>
+        is installed.
+        </p>
+      
+        <p class=L3><b>&lt;classpath&gt;</b> is a Java classpath that includes your application classes.
+        </p>
+      
+        <p class=L3><b>&lt;port&gt;</b> is a TCP/IP port number (usually 3000). 
+        </p>
+      
+      <p class=L2>See <a href="commands.html">Command Line Programs</a> for information on other switches
+      which can be used when starting the <font class=arm>armidale server.</font>
+      </p>
+      
+    <h2>Running your application</h2>
+    
+      <p class=L2>You can now run your application remotely by either using the
+      <font class=arm>armidale launcher</font> or by using the command line as 
+      <a href="commands.html#remoteapplication">described here</a>. To use the
+      <font class=arm>armidale launcher</font>, open the following URL as detailed in the
+      <a href="launcher.html">launcher instructions</a>.
+      </p>
+      
+      <p class=L3Code>arm://&lt;your-host&gt;:3000/armidale.test.SimpleTest
+      </p>
+      
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3><b>&lt;your-host&gt;</b> is the name of the host running the armidale server or
+        <b>127.0.0.1</b> if the server is running on the same machine as the client.
+        </p>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+<callback>
+  <documentation>
+    a callback which signals an action event associated with the object
+  </documentation>
+  <method name="actionPerformed">
+    <documentation>
+      action method documentation
+    </documentation>
+  </method>
+</callback>
+

@@ -1,0 +1,8 @@
+<callback>
+  <method name="objectMoved">
+    <parameter name="position"
+               type="armidale.api.gui.Position"
+    />
+  </method>
+</callback>
+

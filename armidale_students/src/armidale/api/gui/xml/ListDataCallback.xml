@@ -1,0 +1,25 @@
+<callback>
+  <documentation>
+  Callback used to request items from a list.
+  </documentation>
+  <method name="requestItems">
+    <documentation>
+      Requests a specified number of items from a list.
+    </documentation>
+    <parameter name="first"
+               type="int"
+    >
+       <documentation>
+         index of the first item requested
+       </documentation>
+    </parameter>
+    <parameter name="count"
+               type="int"
+    >
+       <documentation>
+         number of items requested
+       </documentation>
+    </parameter>    
+  </method>
+</callback>
+

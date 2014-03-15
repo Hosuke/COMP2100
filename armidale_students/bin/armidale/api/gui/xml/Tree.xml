@@ -1,0 +1,11 @@
+<ArmidaleClass  name="armidale.api.gui.Tree"
+                extends="armidale.api.gui.Widget"
+                abstract="No"
+>
+  <attribute name="treeData"
+             type="@armidale.api.gui.TreeData"
+  />
+ 
+  <include filename="TreeNodeSelectionCallback.xml"/>
+  
+</ArmidaleClass>

@@ -1,0 +1,53 @@
+0x00000100    Image
+0x00000200    VisibleObject      
+0x00000300        Component
+0x00000400            MenuBar
+0x00000500            PopupMenu
+0x00000600            Widget
+0x00000700                Action
+0x00000800                    Button
+0x00000A00                        MenuItem
+0x00000B00                            CheckBoxMenuItem
+0x00000C00                            Menu
+0x00000D00                        PushButton
+0x00002D00                        Toggle
+0x00000900                            CheckBox
+0x00000E00                            RadioButton
+0x00000F00                    Label
+0x00001000                Desktop
+0x00001100                LabeledWidget
+0x00001200                Slider
+0x00001300                Panel
+0x00001400                    BorderPanel
+0x00001500                    BoxPanel
+0x00001600                    FlowPanel
+0x00001700                    GridPanel
+0x00001800                    RadioButtonPanel
+0x00001900                ListBox
+0x00001A00                ComboBox
+0x00001B00                ProgressBar
+0x00001C00                Table
+0x00001D00                ScrollPanel
+0x00001E00                SplitPanel
+0x00001F00                TabbedPanel
+0x00002000                Text
+0x00002100                    TextField
+0x00002200                        PasswordField
+0x00002300                    TextBox
+0x00002400                Tree
+0x00002500        Window
+0x00002600            Frame
+0x00002700            InternalFrame
+
+0x00002800    BorderPanelWidget
+0x00002900    GridPanelWidget
+0x00002A00    TabbedPanelWidget
+
+0x00002B00    ListData
+0x00002C00    TableData
+0x00002D00    TreeData
+
+0x00002E00    OptionBox
+
+0x0000ffff    Clive
+

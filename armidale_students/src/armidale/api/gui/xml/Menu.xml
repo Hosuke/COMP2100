@@ -1,0 +1,13 @@
+<ArmidaleClass name="armidale.api.gui.Menu"
+               extends="armidale.api.gui.MenuItem"
+               abstract="no"
+>
+
+  <method name="addSeparator"
+  />
+  
+  <list name="menuItem"
+        type="@armidale.api.gui.MenuItem"
+  />
+ 
+</ArmidaleClass>

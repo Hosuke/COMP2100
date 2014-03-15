@@ -1,0 +1,46 @@
+<ArmidaleClass name="armidale.api.gui.OptionBox"
+               extends="armidale.api.ArmidaleObject"
+               abstract="no"
+> 
+  <attribute name="title"
+             type="String"
+  />
+  
+  <attribute name="message"
+             type="String"
+  />
+  
+  <attribute name="messageType"
+             type="int"
+             constants="armidale.api.gui.constants.OptionBoxMessageType"
+             default="PLAIN"
+  />
+  
+  <attribute name="buttonSet"
+             type="int"
+             constants="armidale.api.gui.constants.OptionBoxButtonSet"
+             default="DEFAULT"
+  />
+  
+  <attribute name="icon"
+             type="@armidale.api.gui.Image"
+  />
+    
+  <attribute name="input"
+             type="boolean"
+             getName="hasInput"
+             default="false"
+  />
+  
+  <method name="open"
+  />
+  
+  <method name="open">
+    <parameter name="desktop"
+               type="@armidale.api.gui.Desktop"
+    />
+  </method>
+  
+  <include filename="OptionBoxCallback.xml"/>
+   
+</ArmidaleClass>

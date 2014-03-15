@@ -1,0 +1,6 @@
+<ArmidaleClass name="armidale.api.gui.TextField"
+               extends="armidale.api.gui.Text"
+               abstract="no"
+> 
+   
+</ArmidaleClass>

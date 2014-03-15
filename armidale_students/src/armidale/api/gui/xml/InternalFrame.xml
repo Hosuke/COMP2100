@@ -1,0 +1,102 @@
+<ArmidaleClass name="armidale.api.gui.InternalFrame"
+               extends="armidale.api.gui.Window"
+               abstract="no"
+>
+
+  <attribute name="size"
+             type="armidale.api.gui.Size"
+             default="new Size(300, 200)"
+  />
+  
+  <attribute name="position"
+             type="armidale.api.gui.Position"
+             default="new Position(0,0)"
+  />
+  
+  <attribute name="resizable"
+             type="boolean"
+             getName="isResizable"
+             default="true"
+  />
+  
+  <attribute name="closable"
+             type="boolean"
+             getName="isClosable"
+             default="true"
+  />
+  
+  <attribute name="maximizable"
+             type="boolean"
+             getName="isMaximizable"
+             default="true"
+  />
+  
+  <attribute name="iconifiable"
+             type="boolean"
+             getName="isIconifiable"
+             default="true"
+  />
+  
+
+  <attribute name="title"
+             type="String"
+             default="&quot;armidale&quot;"
+  />
+  
+  <attribute name="content"
+             type="@armidale.api.gui.Widget"
+   />
+
+  <attribute name="icon"
+             type="@armidale.api.gui.Image"
+  />
+
+  <attribute name="menubar"
+             type="@armidale.api.gui.MenuBar"
+  />
+  
+  <attribute name="toolbar"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="statusbar"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="backgroundColor"
+             type="armidale.api.gui.Color"
+             default="new Color(204, 204, 204)"
+  />
+    
+  <createMethod name="create">
+    <attribute name="content"/>
+  </createMethod>
+  
+  <createMethod name="create">
+    <attribute name="content"/>
+    <attribute name="title"/>
+  </createMethod>
+  
+  <createMethod name="create">
+    <attribute name="content"/>
+    <attribute name="title"/>
+    <attribute name="icon"/>
+  </createMethod>
+  
+  <method name="setAlignment">
+    <parameter name="xAlign"
+               type="float"
+    />
+    <parameter name="yAlign"
+               type="float"
+    />
+  </method>
+          
+  <method name="setAlignment">
+    <parameter name="alignment"
+               type="int"
+               constants="armidale.api.gui.constants.Compass"
+    />
+  </method>
+    
+</ArmidaleClass>

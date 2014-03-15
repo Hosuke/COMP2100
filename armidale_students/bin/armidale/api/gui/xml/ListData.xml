@@ -1,0 +1,17 @@
+<ArmidaleClass name="armidale.api.gui.ListData"
+               extends="armidale.api.ArmidaleObject"
+               abstract="No"
+>
+
+  <list name="Item"
+        type="@armidale.api.ArmidaleObject"
+        indexed="yes"
+        callback="yes"
+  >
+    <documentation>
+      Items are added and removed from ListData using list management methods.
+    </documentation>
+  </list>
+
+ 
+</ArmidaleClass>

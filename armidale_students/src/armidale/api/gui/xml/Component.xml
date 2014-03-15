@@ -1,0 +1,48 @@
+<ArmidaleClass name="armidale.api.gui.Component"
+               extends="armidale.api.gui.VisibleObject"
+               abstract="yes"
+>
+
+  <newDefault name="visible"
+              type="boolean"
+              getName="isVisible"
+              default="true"
+  />
+
+  
+  <attribute name="enabled"
+             type="boolean"
+             getName="isEnabled"
+             default="true"
+  />
+ 
+  <attribute name="toolTip"
+             type="String"
+  />
+
+  <attribute name="popupMenu"
+             type="@armidale.api.gui.PopupMenu"
+  />
+
+  <attribute name="font"
+             type="armidale.api.gui.Font"
+             default="new Font(Font.DIALOG, 12, true, false)"
+  />
+
+  <attribute name="foregroundColor"
+             type="armidale.api.gui.Color"
+             default="Color.BLACK"
+  />
+
+  <attribute name="backgroundColor"
+             type="armidale.api.gui.Color"
+             default="new Color(204, 204, 204)"
+  />
+
+  <attribute name="cursorType"
+             type="int"
+             constants="armidale.api.gui.constants.CursorType"
+	     default="DEFAULT_CURSOR"
+  />
+  
+</ArmidaleClass>

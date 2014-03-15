@@ -1,0 +1,20 @@
+<ArmidaleClass name="armidale.api.gui.BorderPanelWidget"
+               extends="armidale.api.ArmidaleObject"
+               abstract="no"
+>
+  <attribute name="widget"
+             type="@armidale.api.gui.Widget"
+  />
+  
+  <attribute name="constraint" 
+             type="int"
+             constants="armidale.api.gui.constants.OrthogonalCompass"
+             default="CENTER"
+  />
+  
+  <createMethod>
+    <attribute name="widget"/>
+    <attribute name="constraint"/>
+  </createMethod>
+
+</ArmidaleClass>

@@ -1,0 +1,8 @@
+<callback>
+  <method name="stateChange">
+    <parameter name="selected"
+               type="boolean"
+    />
+  </method>
+</callback>
+ 

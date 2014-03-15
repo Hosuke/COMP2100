@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+
+<head>
+  <title>armidale launcher users guide</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>Using the armidale application launcher</h1>
+  
+  <h2>Overview</h2>
+ 
+    <a name="overview"></a> 
+    
+    <p class=L2>The <font class=arm>armidale application launcher</font> provides a simple interface to start
+    <font class=arm>armidale</font> applications running on servers around the internet or an
+    intranet. It also provides a simple application bookmark management facility.
+    </p>
+    
+    
+  <a name="starting"></a> 
+  <h2>Starting the armidale launcher</h2>
+      
+    <p class=L2>The <font class=arm>armidale launcher</font> is started using the following command:
+    </p>
+
+    <p class=L3Code>java -jar &lt;install_dir&gt;/jars/armidale.jar
+    </p>
+
+    <p class=L2>where:
+    </p>
+    
+      <p class=L3>&lt;install_dir&gt; is the name of the directory in which <font class=arm>armidale</font> is installed.
+      </p>
+  
+    <p class=L2>If all is well, the following window should appear.
+    </p>
+
+    <div class=image>
+      <a href="images/launcher-about.png" type="image/png"><img src="images/launcher-about-sml.png" width="357" height="175" border="0"></a>
+    </div>
+
+  <h2>Launcher Functions</h2>
+
+    <p class=L2">
+      <a href="#start">Start Application</a>
+      <br/>
+      <a href="#bookmarks">Bookmarks</a>
+      <br/>
+      <a href="#home">Home Application</a>
+      <br/>
+      <a href="#exiting">Exiting the launcher</a>
+      <br/>
+      <a href="#options">Options Tab</a>
+      <br/>
+      <a href="#about">About Tab</a>
+      <br/>
+      <a href="#commandline">Using the command line</a>
+      <br/>
+    </p>
+    
+   
+    <a name="start"/>
+    <h3>Start Application</h3>
+      
+      <p class=L3>The <b>start application</b> function starts an application on a remote <font class=arm>armidale</font> server
+      or locally.
+      The function is used by first entering the URL of an application into the edit box
+      on the launcher tool bar. To start the specified application, use the <b>Bookmarks.Start URL</b> menu item
+      or click the <img src="images/icons/Play16.gif" alt="Play Button" width=16 height=16 border=0>button
+      on the toolbar.
+      </p>
+
+      <p class=L3>The URL of an <font class=arm>armidale</font> application running on a remote server has the following form:
+      </p>
+  
+        <p class=L4Code>arm://&lt;host_name&gt;[:&lt;port&gt;][/&lt;application_name&gt;] {&lt;arguments&gt;}
+        </p>
+      
+      <p class=L3>where:
+      </p>
+      
+        <p class=L4><b>&lt;host_name&gt;</b> is the name of a machine running an <font class=arm>armidale</font> server
+        (eg. armidale.anu.edu.au).
+        </p>
+  
+        <p class=L4><b>&lt;port&gt;</b> (optional) specifies the port number that the server
+        machine is listening on for <font class=arm>armidale</font> connections. If not specified the port number
+        is assumed to be 3000.
+        </p>
+      
+        <p class=L4><b>&lt;application_name&gt;</b> (optional) specifies the name of an <font class=arm>armidale</font>
+        application available on the specified server. If &lt;application_name&gt; is not specified,
+        then the launcher will attempt to start an application called "Home".
+        </p>
+      
+      <p class=L3>Some examples of <font class=arm>armidale</font> URLs for remote applications include:
+      </p>
+      
+        <p class=L4Code>
+          arm://my-airline.com/BookFlight
+          <br/>
+          arm://my-university.edu/student.CheckMarks
+          <br/>
+          arm://my-bank.com/accounts.TransferFunds
+          <br/>
+          arm://my-search-engine.com/web.Search
+          <br/>
+          arm://my-search-engine.com/news.Search
+          <br/>
+          arm://my-company.com:3010/testing.TestArmidale
+          <br/>
+          arm://some-company.com
+        </p>
+
+ 
+      <p class=L3>To run a local application (ie. one that is installed on the local machine), the URL is simply the name of the 
+      <font class=arm>armidale</font> application as shown in the following examples.
+      </p>
+
+        <p class=L4Code>
+          BookFlight
+          <br/>
+          student.CheckMarks
+          <br/>
+          accounts.TransferFunds
+          <br/>
+          web.Search
+          <br/>
+          news.Search
+          <br/>
+          testing.TestArmidale
+        </p>
+        
+
+    <a name="bookmarks"/>
+    <h3>Bookmarks</h3>
+   
+      <p class=L3>The application URL entered into the URL edit box can be bookmarked by using the
+      <b>Bookmarks.Bookmark URL</b> menu item or by clicking the
+      <img src="images/icons/Bookmarks16.gif" alt="Bookmark Button" width=16 height=16 border=0>
+      button on the toolbar.
+      </p>
+  
+      <p class=L3>Bookmarked applications are listed on the bookmarks tab located at the bottom of the
+      launcher window. When an application on the bookmark tab is selected, its URL will be entered
+      into the URL Edit box. The Start Application function described above can then be used to start the
+      selected application.
+      </p>
+      
+      <p class=L3>Bookmarks can be deleted by using the <b>Bookmarks.Delete Selected Bookmark</b>
+      and <b>Bookmarks.Delete All Bookmarks</b> menu items.
+      </p>
+      
+      
+    <a name="home"/>
+    <h3>Home Application</h3>
+      
+      <p class=L3>In addition to bookmarked applications, the <font class=arm>armidale launcher</font> allows
+      the user to specify a 'home' application by entering its URL into the URL edit box and then using the
+      <b>Bookmarks.Set Home URL</b> menu item or clicking the
+      <img src="images/icons/Save16.gif" alt="Save Button" width=16 height=16 border=0>button on the toolbar.
+      </p>
+      
+      <p class=L3>This home application can then be started in one step by using the <b>Launcher.Start Home URL</b>
+      menu item or by clicking the <img src="images/icons/Home16.gif" alt="Home Button" width=16 height=16 border=0>
+      button on the toolbar.
+      </p>
+
+
+    <a name="exiting"/>
+    <h3>Exiting the armidale launcher</h3>
+      
+      <p class=L3>The <font class=arm>armidale launcher</font> can be closed down by using the <b>File.Exit</b> menu item or by clicking the
+      <img src="images/icons/Stop16.gif" alt="Stop Button" width=16 height=16 border=0>button on the toolbar.
+      </p>
+      
+      <p class=L3>When the launcher closes down, its state (current URL, home URL, bookmarks, and selected tab) is
+      saved. When the launcher is restarted, its state will be set to that saved after the previous shutdown.
+      </p>
+
+
+    <a name="options"/>
+    <h3>Options Tab</h3>
+      
+      <p class=L3>The <b>Options tab</b> provides some control over debugging functions built into 
+      <font class=arm>armidale</font>. They should not be changed by end users and are intended for use
+      by <font class=arm>armidale</font> application developers.
+      </p>
+
+
+   
+    <a name="about"/>
+    <h3>About Tab</h3>
+
+      <p class=L3>The <b>About tab</b> shows a copyright notice, the launcher version and details about the
+      platform on which it is running.
+      </p>
+
+            
+  <a name="commandline"/>
+  <h2>Running remote applications from the command line</h2>
+         
+    <p class=L2>As an alternative to using the <font class=arm>armidale launcher</font>, remote armidale
+    applications can be started using the following command (described <a href="commands.html#remoteapplication">here</a>).
+    </p>
+      
+    <p class=L3Code>
+      java -cp &lt;armidale_home_dir&gt;/jars/armidale.jar armidale.api.RemoteApplication &lt;url&gt; {&lt;arguments&gt;}</code>
+    </p>
+
+    
+  <h2>A Final Note</h2>
+  
+  <p class=L2>It should not surprise you to learn that the <font class=arm>armidale launcher</font> is itself an
+  <font class=arm>armidale</font> application and can therefore be run remotely. For example, the latest
+  version of the launcher could be started using a command like:
+  </p>
+    <p class=L3Code>
+      java -cp armidale.jar armidale.api.RemoteApplication arm://armidale.anu.edu.au/armidale.launcher.Main</code>
+    </p>
+
+  
+</body>
+</html>

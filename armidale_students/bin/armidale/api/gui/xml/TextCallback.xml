@@ -1,0 +1,8 @@
+<callback>
+  <method name="textChanged">
+    <parameter name="theText"
+               type="String"
+    />
+  </method>
+</callback>
+

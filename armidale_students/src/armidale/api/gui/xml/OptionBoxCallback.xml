@@ -1,0 +1,12 @@
+<callback>
+  <method name="optionSelected">
+    <parameter name="option"
+               type="int"
+               constants="armidale.api.gui.constants.OptionBoxButton"
+    />
+    <parameter name="text"
+               type="String"
+    />
+  </method>
+</callback>
+

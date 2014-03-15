@@ -1,0 +1,18 @@
+<ArmidaleClass name="armidale.api.gui.RadioButtonPanel"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+> 
+
+  <attribute name="orientation"
+             type="int"
+             default="VERTICAL"
+             constants="armidale.api.gui.constants.Orientation"
+  />
+  
+  <list name="RadioButton"
+        type="@armidale.api.gui.RadioButton"
+  />
+
+  <include filename="SelectionCallback.xml"/>
+   
+</ArmidaleClass>

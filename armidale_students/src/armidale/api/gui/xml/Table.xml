@@ -1,0 +1,11 @@
+<ArmidaleClass  name="armidale.api.gui.Table"
+                extends="armidale.api.gui.Widget"
+                abstract="No"
+>
+  <attribute name="tableData"
+             type="@armidale.api.gui.TableData"
+  />
+ 
+  <include filename="TableSelectionCallback.xml"/>
+  
+</ArmidaleClass>

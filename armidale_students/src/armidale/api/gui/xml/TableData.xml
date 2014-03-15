@@ -1,0 +1,11 @@
+<ArmidaleClass  name="armidale.api.gui.TableData"
+                extends="armidale.api.ArmidaleObject"
+                abstract="No"
+>
+
+  <table name="Item"
+         type="@armidale.api.ArmidaleObject"
+         callback="yes"
+  />
+
+</ArmidaleClass>

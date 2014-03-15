@@ -1,0 +1,21 @@
+<ArmidaleClass name="armidale.api.gui.Panel"
+               extends="armidale.api.gui.Widget"
+               abstract="yes"
+>
+
+  <attribute name="title"
+             type="String"
+  />
+  
+  <attribute name="edgeStyle"
+             type="int"
+             constants="armidale.api.gui.constants.EdgeStyle"
+             default="NONE"
+  />
+  
+  <attribute name="edgeColor"
+             type="armidale.api.gui.Color"
+             default="new Color(204, 204, 204)"
+  />
+
+</ArmidaleClass>

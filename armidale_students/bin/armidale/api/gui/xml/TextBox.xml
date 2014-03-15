@@ -1,0 +1,15 @@
+<ArmidaleClass name="armidale.api.gui.TextBox"
+               extends="armidale.api.gui.Text"
+               abstract="no"
+> 
+
+  <attribute name="wrapEnabled"
+             type="boolean"
+             getName="wrapEnabled"
+             default="true"
+  />
+  
+  <method name="requestUpdate"
+  />
+  
+</ArmidaleClass>

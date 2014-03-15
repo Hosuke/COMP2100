@@ -1,0 +1,32 @@
+<ArmidaleClass name="armidale.api.gui.ProgressBar"
+               extends="armidale.api.gui.Widget"
+               abstract="no"
+> 
+  <attribute name="minimum"
+             type="int"
+             default="0"
+  />
+  
+  <attribute name="maximum"
+             type="int"
+             default="100"
+  />
+  
+  <attribute name="value"
+             type="int"
+             default="0"
+  />
+  
+  <attribute name="drawProgressString"
+             type="boolean"
+             getName="drawsProgressString"
+             default="true"
+  />
+  
+  <attribute name="orientation"
+             type="int"
+             constants="armidale.api.gui.constants.Orientation"
+             default="HORIZONTAL"
+  />
+     
+</ArmidaleClass>

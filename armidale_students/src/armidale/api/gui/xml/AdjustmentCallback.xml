@@ -1,0 +1,8 @@
+<callback>
+  <method name="valueAdjusted">
+    <parameter name="value"
+               type="int"
+    />
+  </method>
+</callback>
+

@@ -1,0 +1,23 @@
+<ArmidaleClass name="armidale.api.gui.Text"
+               extends="armidale.api.gui.Widget"
+               abstract="yes"
+>
+
+  <newDefault name="backgroundColor"
+              type="armidale.api.gui.Color"
+              default="Color.WHITE"
+  />
+    
+  <attribute name="text"
+             type="String"
+  />
+    
+  <attribute name="editable"
+             type="boolean"
+             getName="isEditable"
+             default="true"
+  />
+
+  <include filename="TextCallback.xml"/>
+    
+</ArmidaleClass>

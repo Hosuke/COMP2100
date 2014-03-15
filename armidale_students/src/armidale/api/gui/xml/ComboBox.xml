@@ -1,0 +1,18 @@
+<ArmidaleClass name="armidale.api.gui.ComboBox"
+               extends="armidale.api.gui.Widget"
+               abstract="No"
+>
+
+  <attribute name="items"
+             type="String[]"
+             access="writeOnly"
+  />
+  
+  <attribute name="selectedItem"
+             type="int"
+             default="0"
+  />
+  
+  <include filename="SelectionCallback.xml"/>
+  
+</ArmidaleClass>

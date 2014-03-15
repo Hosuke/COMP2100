@@ -1,0 +1,26 @@
+<ArmidaleClass name="armidale.api.gui.FlowPanel"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+>
+  
+  <attribute name="horizontalGap"
+             type="int"
+             default="0"
+  />
+
+  <attribute name="verticalGap"
+             type="int"
+             default="0"
+  />
+
+  <attribute name="alignment"
+             type="int"
+             constants="armidale.api.gui.constants.FlowAlignment"
+             default="CENTER"
+  />
+
+  <list name="widget"
+        type="@armidale.api.gui.Widget"
+  />
+
+</ArmidaleClass>

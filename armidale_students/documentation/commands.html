@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+  <title>commands</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>armidale command line programs</h1>
+    
+    <p class=L1>The following <font class=arm>armidale</font> programs are included in the
+    <font class=arm>armidale</font> system. In order to run each of the following programs 
+    the <b>armidale.jar</b> file must be on Java's classpath. This can be done by using
+    the <b>-cp &lt;classpath&gt;</b> switch with the java command or by setting the 
+    CLASSPATH environment variable.
+    </p>
+    
+    <h2>The armidale launcher</h2>
+    
+      <p class=L2>The following command will start the <font class=arm>armidale launcher</font>.
+      See <a href="launcher.html">Using the armidale launcher</a> for more information.
+      </p>
+
+        <p class=L3Code>java armidale.api.launcher
+      
+    <h2>The armidale server</h2>
+    
+      <p class=L2>The following command will start the <font class=arm>armidale server</font>.
+      </p>
+
+        <p class=L3Code>java armidale.api.Server [-port &lt;port_number&gt;] [-[new]log &lt;filename&gt;]
+        </p>
+        
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3>
+          <b>-port &lt;port_num&gt;</b> specifies the port number the server will listen on for 
+          client connections. If no port is specified, the server will listen on port 3000.
+        </p>
+        
+        <p class=L3>
+          <b>-log &lt;filename&gt;</b> or <b>-newlog &lt;filename&gt;</b> tells the server to append all
+          messages to the specified file rather than the screen. If <b>-newlog</b> is used, a new log file
+          is created.
+        </p>
+      
+    <h2>Remote Application</h2>
+    
+      <a name="remoteapplication">
+      
+      <p class=L2>The following command line can be used on a client computer to start an
+      <font class=arm>armidale</font> application on an <font class=arm>armidale</font> server.
+      </p>
+      
+        <p class=L3Code>java armidale.api.RemoteApplication &lt;url&gt; {&lt;argument&gt;}
+        </p>
+        
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3>
+          <b>&lt;url&gt;</b> specifies the URL of the application to start. The syntax of the URL is 
+          described <a href="launcher.html#start">here.</a>
+        </p>
+      
+        <p class=L3>
+          <b>{&lt;argument&gt;}</b> specifies zero or more arguments to be passed to the application
+          started on the server.
+        </p>
+            
+    <h2>GUI Widget class code generator</h2>
+    
+      <p class=L2>The following command is used to generate the Java source code for classes that implement
+      a set of GUI Widgets.
+      </p>
+      
+        <p class=L3Code>java armidale.utilities.makeclass.Main
+        {&lt;spec_filename&gt;}
+        -platforms &lt;platform_list&gt;
+        -classid  (&lt;id&gt; | &lt;filename&gt;)
+        [-source &lt;directory&gt;]
+        [-norestore]
+        </p>
+        
+      <p class=L2>where:
+      </p>
+      
+        <p class=L3><b>{&lt;spec_filename&gt;}</b> specifies one or more XML files that describe the widgets
+        to be generated.
+        </p>
+        
+        <p class=L3><b>-platforms &lt;platform_list&gt;</b> specifies the list of platforms for which to
+        generate platform implementation classes. <b>&lt;platform_list&gt;</b> is a list of platform names
+        separated by ":". For example "-platforms swing" or "-platforms swing:swt".
+        </p>
+        
+        <p class=L3><b>-classid &lt;filename&gt; | &lt;ID&gt;.</b> All <font class=arm>armidale</font> 
+        widgets have a unique ID. This switch is used to specify the ID of the widget. If
+        a filename is specified, the class ID will be extracted from a list of classes and IDs in the file
+        (see developer/src/armidale/api/gui/xml/widget.txt for an example). If an ID is specified, it will be
+        used for the class ID.
+        </p>
+        
+        <p class=L3>If you want to develop your own widgets, you will need a set of unique class IDs. For now, 
+        we will allocate IDs manually. If you want some ID's please email <a href="mailto:shayne@cs.anu.edu.au>
+        shayne@cs.anu.edu.au</a> with the subject <b>REQUEST FOR nn ARMIDALE CLASS IDs</b>, where <b>nn</b>
+        is the number of IDs you need. Please include a brief note describing the widgets you plan to create.
+        We will respond with a range of IDs like 10200-10210.
+        </p>
+        
+        <p class=L3><b>-source &lt;directory&gt;</b> specifies the root of the tree into which source code will
+        be generated. If not specified, the current directory will be used.
+        </p>
+        
+        <p class=L3><b>-norestore</b> will cause the program to generate completely new platform implementation
+        classes. If this switch is used, developer code will NOT be restored from previous versions.
+        Use with care!
+        </p>
+  
+      
+    <h2>Show user preferences</h2>
+    
+      <p class=L2>The following command line will display the current <font class=arm>armidale</font> preferences.
+      </p>
+      
+        <p class=L3Code>java armidale.utilities.preferences.Show
+        </p>
+        
+    <h2>Delete user preferences</h2>
+    
+      <p class=L2>The following command line will delete the current <font class=arm>armidale</font> preferences.
+      </p>
+      
+        <p class=L3Code>java armidale.utilities.preferences.Delete
+        </p>
+
+</body>
+</html>

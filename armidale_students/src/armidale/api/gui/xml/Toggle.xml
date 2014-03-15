@@ -1,0 +1,14 @@
+<ArmidaleClass name="armidale.api.gui.Toggle"
+               extends="armidale.api.gui.Button"
+               abstract="yes"
+> 
+
+  <attribute name="selected"
+             type="boolean"
+             getName="isSelected"
+             default="false"
+  />
+  
+  <include filename="ToggleCallback.xml"/>
+  
+</ArmidaleClass>

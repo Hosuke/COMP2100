@@ -1,0 +1,21 @@
+<callback>
+  <method name="windowOpen"/>
+  <method name="windowActivated"/>
+  <method name="windowClosed"/>
+  <method name="windowClosing"/>
+  <method name="windowDeactivated"/>
+  <method name="windowDeiconified"/>
+  <method name="windowIconified"/>
+  <method name="windowOpened"/>
+  <method name="windowMoved">
+    <parameter name="position"
+               type="armidale.api.gui.Position"
+    />
+  </method>
+  <method name="windowResized">
+    <parameter name="size"
+               type="armidale.api.gui.Size"
+    />
+  </method>
+</callback>
+

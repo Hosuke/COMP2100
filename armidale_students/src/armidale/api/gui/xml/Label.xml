@@ -1,0 +1,43 @@
+<ArmidaleClass name="armidale.api.gui.Label"
+               extends="armidale.api.gui.Action"
+               abstract="no"
+>
+  
+  <attribute name="text"
+             type="String"
+  />
+    
+  <attribute name="textPosition"
+             type="int"
+             default="WEST"
+  />
+    
+  <attribute name="image"
+             type="@armidale.api.gui.Image"
+  />
+
+  <attribute name="alignment"
+             type="int"
+             constants="armidale.api.gui.constants.Compass"
+             default="CENTER"
+  />
+    
+  <attribute name="imageTextGap"
+             type="int"
+             default="4"
+  />
+
+  <createMethod name="create">
+    <attribute name="text"/>
+  </createMethod>
+    
+  <createMethod name="create">
+    <attribute name="image"/>
+  </createMethod>
+    
+  <createMethod name="create">
+    <attribute name="text"/>
+    <attribute name="image"/>
+  </createMethod>
+
+</ArmidaleClass>

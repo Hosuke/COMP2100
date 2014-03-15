@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+  <title>armidale user installation guide</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>End User Installation</h1>
+
+    <a name="user"/>
+    
+    <p class=L1>The following installation procedure should be used if you want to run
+    <font class=arm>armidale</font> applications over the internet or an intranet.
+    If you want to develop <font class=arm>armidale</font> applications
+    you will need to <a href="developerinstall.html">install the armidale
+    development system.</a>
+  
+    <h2>Step 1: Preparation.</h2>
+    
+      <p class=L2>For end user installations (ie. no developer
+      support) the <a href="http://www.java.sun.com" type="text/html"> Sun JRE version 1.3 or 1.4</a>
+      is required. JRE 1.4 is preferred. It shouldn't matter which operating system you use as
+      long  as it supports Java 1.3 or 1.4.
+      </p>
+      
+      <p class=L2>Use the following command to see if you
+      already have the required version of the JDK installed.
+      </p>
+     
+        <p class=L3Code>java -version
+        </p>
+  
+    <h2>Step 2: Create an installation directory.</h2>
+
+      <p class=L2>Create a new directory in which to install <font class=arm>armidale</font>. By convention,
+      the directory should be called 'armidale', but any name will do. The directory
+      can be placed anywhere on your system.
+      </p>
+  
+    <h2>Step 3: Download the installation files.</h2>
+  
+      <p class=L2>The <font class=arm>armidale</font> end user distribution comprises the following 
+      executable Java jars which can be
+      <a href="http://sourceforge.net/projects/armidale" type="text/html">downloaded from here.</a> Download the
+      files to the directory created in step 2.
+    
+        <p class=L3><font class="paraHeading">armidale-&lt;version&gt;-user.jar.</font>
+        This jar contains the <font class=arm>armidale application
+        launcher</font> and will configure your computer to use the <font class=arm>armidale</font> system.
+        </p>
+    
+        <p class=L3><font class="paraHeading">armidale-&lt;version&gt;-documentation.jar.</font>
+        Installation of this jar is optional. It contains the HTML pages and images
+        that comprises the <font class=arm>armidale</font> web site (ie. the pages you are reading now).
+        </p>
+    
+      <p class=L2><b>&lt;version&gt;</b> in the above file names is a version number like 0.9.2
+      (eg. armidale-0.9.2-user.jar). Always download the latest version of
+      <font class=arm>armidale</font>.
+      </p>
+           
+    <h2>Step 4: Install the user jar.</h2>
+
+      <p class=L2>In a command shell, 'cd' to the directory created in step 2, and then use the following command
+      to install the end user <font class=arm>armidale</font> system. 
+      </p>
+        <p class=L3Code>java -jar armidale-&lt;version&gt;-user.jar
+        </p>
+      
+      <p class=L2>Installation of this jar will create a subdirectory called <font class=code>jars</font>
+      containing the main <font class=arm>armidale</font> jar. It will also save some initial state 
+      information for the <font class=arm>armidale application launcher</font> and will create an
+      <font class=arm>armidale</font> resources directory called <font class=code>.armidale</font> in your home directory.
+      <p>
+
+    <h2>Step 5: Install the Documentation.</h2>
+
+      <p class=L2>If you want to install the <font class=arm>armidale</font> documentation, 'cd' to the directory
+      created in step 2, and then use the following command.
+      </p>
+        <p class=L3Code>java -jar armidale-&lt;version&gt;-documentation.jar
+        </p>
+
+      <p class=L2>Installation of this jar will create a subdirectory called <font class=code>documentation</font>
+      containing the <font class=arm>armidale</font> documentation.
+      </p>
+    
+  <h1>What's next?</h1>
+
+    <p class=L1>See <a href="launcher.html">Using the armidale launcher</a> for information on running
+    <font class=arm>armidale</font> applications.
+    </p>
+  
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<ArmidaleClass name="armidale.api.gui.BorderPanel"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+>
+
+  <documentation>
+    A BorderPanel is a panel on which widgets are layed out using a border layout
+    manager. See the JDK description of java.awt.BorderLayout for more details.
+    <para/>
+    This is a second paragraph
+  </documentation>
+
+  <attribute name="horizontalGap"
+             type="int"
+             default="0"
+  >
+    <documentation>
+      The horizontalGap attribute specifies the horizontal gap between widgets placed on the BorderPanel
+    </documentation>
+  </attribute>
+  
+  <attribute name="verticalGap"
+             type="int"
+             default="0"
+  >
+    <documentation>
+      The verticalGap attribute specifies the <tt>vertical</tt> gap between widgets placed on the BorderPanel
+    </documentation>
+  </attribute>
+  
+  <list name="widget" 
+        type="@armidale.api.gui.BorderPanelWidget"
+  >
+    <documentation>
+      A widget is added to a BorderPanel by first encapsulating it in a BorderPanelWidget and then
+      adding the BorderPanelWidget to the BorderPanel using the <tt>addWidget</tt> method. Widgets are 
+      removed using the <tt>removeWidget</tt> or <tt>removeAllWidgets</tt> methods.
+    </documentation>
+  </list>
+  
+</ArmidaleClass>

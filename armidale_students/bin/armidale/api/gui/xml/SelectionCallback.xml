@@ -1,0 +1,8 @@
+<callback>
+  <method name="indexSelected">
+    <parameter name="index"
+               type="int"
+    />
+  </method>
+</callback>
+

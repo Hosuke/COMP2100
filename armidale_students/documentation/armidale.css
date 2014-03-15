@@ -1,0 +1,238 @@
+/* Headings
+ */
+
+H1 {
+  color: purple;
+  font-family: sans-serif;
+  font-size: x-large;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+  border: 0;
+  padding: 0;
+}
+
+H1.center {
+  text-align: center;
+}
+
+H2 {
+  color: purple;
+  font-family: sans-serif;
+  font-size: large;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 0.25in;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+  border: 0;
+  padding: 0;
+}
+
+H3 {
+  color: purple;
+  font-family: sans-serif;
+  font-size: medium;
+  font-weight: bold;
+  margin: 0;
+  margin-left: 0.5in;
+  margin-top: 10pt;
+  margin-bottom: 10pt;
+  border: 0;
+  padding: 0;
+}
+
+H4 {
+  color: black;
+  font-family: sans-serif;
+  font-size: small;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 10pt;
+  margin-left: 0.5in;
+  margin-bottom: 10pt;
+  border: 0;
+  padding: 0;
+}
+
+/* change P to xxlarge so thet we have to use classes 
+ */
+P {
+  font-family: sans-serif;
+  font-size: small;
+  color: black;
+  margin-top: 0;
+  margin-bottom: 20pt;
+  margin-left: 0.5in;
+  margin-right: 0.5in;
+}
+
+/* Levels 1..4 for normal text and code
+*/
+
+P.L1 {
+  font-size: small;
+  margin-left: 0.25in;
+}
+
+P.L2 {
+  font-size: small;
+  margin-left: 0.5in;
+}
+
+P.L3 {
+  font-size: small;
+  margin-left: 0.75in;
+}
+
+P.L4 {
+  font-size: small;
+  margin-left: 1.0in;
+}
+
+P.L1Code {
+  font-family: monospace;
+  font-size: small;
+  margin-left: 0.25in;
+}
+
+P.L2Code {
+  font-family: monospace;
+  font-size: small;
+  margin-left: 0.5in;
+}
+
+P.L3Code {
+  font-family: monospace;
+  font-size: small;
+  margin-left: 0.75in;
+}
+
+P.L4Code {
+  font-family: monospace;
+  font-size: small;
+  margin-left: 1.0in;
+}
+
+/* special paragraphs
+ */
+ 
+P.author {
+  font-family: sans-serif;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+}
+  
+P.monospace {
+  font-family: monospace;
+  font-size: small;
+}
+
+P.caption {
+  font-family: Serif;
+  font-size: medium;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20pt;
+  margin-left: 1.5in;
+  margin-right: 1.5in;
+}
+  
+P.note {
+  font-family: sans-serif;
+  font-size: small;
+  font-weight: normal;
+  font-style: italic;
+  margin-top: 0;
+  margin-right: 0.75in;
+}
+  
+P.redNote {
+  color: red;
+  font-family: serif;
+  font-size: large;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  margin-top: 0;
+  margin-right: 0.75in;
+}
+  
+  
+  
+/* misc.
+ */
+
+A {
+  font-family: sans-serif;
+  font-size: small;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+}
+
+DIV.center {
+  text-align: center;
+}
+
+DIV.image {
+  text-align: center;
+  margin-bottom: 20pt;
+}
+
+DIV.title {
+  font-family: sans-serif;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+}
+  
+BLOCKQUOTE {
+  font-family: sans-serif;
+  font-size: small;
+  margin-left: 0.5in;
+  margin-right: 0.25in;
+  margin-top: 12pt;
+  margin-bottom: 12pt;
+}
+
+
+FONT.arm {
+  font-family: sans-serif;
+  font-size: small;
+  font-weight: bold;
+  color: purple;
+}
+ 
+FONT.italic {
+  font-family: serif;
+  font-size: small;
+  font-style: italic;
+}
+ 
+FONT.copyright {
+  font-family: sans-serif;
+  font-size: x-small;
+  font-weight: normal;
+  color: purple;
+}
+  
+FONT.paraHeading {
+  color: green;
+  font-family: sans-serif;
+  font-size: small;
+  font-weight: bold;
+}
+
+FONT.code {
+  color: black;
+  font-family: monospace;
+  font-size: small;
+  font-weight: bold;
+}
+
+

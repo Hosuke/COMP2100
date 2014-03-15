@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+  <title>developing armidale applications</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>Ant Build Targets</h1>
+  
+    <p class=L1> The following paragraphs describe each of the targets specified in the
+    <font class=arm>armidale</font> ant build file 
+    (<font class=code>&lt;install_dir&gt;/developer/build.xml</font>).
+    </p>
+    
+    <h2>clean</h2>
+    
+      <p class=L2>The <b>clean</b> target performs the following operations.
+      </p>
+      
+        <p class=L3>
+          1. Deletes the <b>build</b> directory tree created by the <b>prepare</b> target.
+        </p>
+    
+        <p class=L3>
+          2. Deletes all <b>.class</b> files from the <b>developer/src</b> directory tree.
+        </p>
+    
+        <p class=L3>
+          3. Deletes all files ending with tilde (ie. ~) from the <b>developer/src</b> directory tree.
+        </p>
+    
+    <h2>prepare</h2>   
+    
+      <p class=L2>The <b>prepare</b> target creates the following directories in the <font class=arm>armidale</font>
+      installation directory (if they don't already exist).
+      </p>
+    
+        <p class=L3Code>
+          build<br/>
+          build/classes<br/>
+          build/jars<br/>
+          build/distribution<br/>
+          backups
+        </p>
+
+    <h2>compile_all</h2>
+    
+      <p class=L2>The <b>compile_all</b> target performs the following operations.
+      </p>
+      
+        <p class=L3>
+          1. Invokes the <b>prepare</b> target.
+        </p>
+        
+        <p class=L3>
+          2. Compiles all Java source files found in the <b>developer/src</b> directory tree.
+        </p>
+          
+    <h2>compile_utilities</h2>
+    
+      <p class=L2>The <b>compile_utilities</b> target performs the following operations.
+      </p>
+      
+        <p class=L3>
+          1. Invokes the <b>prepare</b> target.
+        </p>
+        
+        <p class=L3>
+          2. Compiles all Java source files found in the <b>developer/src/armidale/utilities</b> directory tree.
+        </p>
+          
+      <p class=L2>This target is useful when making changes to the <font class=code>armidale.utilities.MakeClass</font>
+      widget code generation program. Changes will often lead to the generation of code that will not compile!
+      </p>
+      
+    <h2>build_javadoc</h2>
+    
+      <p class=L2>The <b>build_javadoc</b> target performs the following operations.
+      </p>
+
+        <p class=L3>
+          1. Invokes the <b>prepare</b> target.
+        </p>
+        
+        <p class=L3>
+          2. Generates <b>javadoc</b> documentation for the following <font class=arm>armidale</font>
+          packages. The resulting documentation is placed in the <b>development/javadoc</b> directory tree.
+        </p>
+        
+          <p class=L4Code>
+            armidale.api.api.* (excluding armidale.api.impl.* and armidale.api.gui.impl.*)<br/>
+            armidale.api.launcher.*<br/>
+            armidale.api.test.*<br/>
+            armidale.api.utilities.*<br/>
+          </p>
+      
+    <h2>build_jar</h2>
+    
+     <p class=L2>The <b>build_jar</b> target performs the following operations.
+      </p>
+
+        <p class=L3>
+          1. Invokes the <b>compile_all</b> target.
+        </p>
+        
+        <p class=L3>
+          2. Generates the main <font class=arm>armidale</font> jar file in
+          <b>build/jars/armidale.jar</b>. This jar contains all of the compiled <font class=arm>armidale</font> 
+          classes. 
+        </p>
+      
+    <h2>build_distribution</h2> 
+    
+      <p class=L2>The <b>build_distribution</b> target performs the following operations.
+      </p>
+    
+        <p class=L3>
+          1. Invokes the  <b>compile_all</b>, <b>build_javadoc</b>, and <b>build_jar</b>
+          targets.
+        </p>
+
+        <p class=L3>
+          2. Generates the following jars which comprise the standard 
+          <font class=arm>armidale</font> distribution. They will be placed in the <b>build/distribution</b>
+          directory.
+        </p>
+      
+          <p class=L4Code>
+            armidale-&lt;version&gt;-user.jar
+            <br/>
+            armidale-&lt;version&gt;-documentation.jar
+            <br/>
+            armidale-&lt;version&gt;-developer.jar
+            <br/>
+          </p>
+        
+        <p class=L3>where:
+        </p>
+      
+          <p class=L4><b>&lt;version&gt;</b> in the above file names is a version number like 0.9.2
+          (eg. armidale-0.9.2-user.jar).
+          </p>
+        
+        <p class=L3>See the <a href=userinstall.html>User Installation</a> and
+        <a href=developerinstall.html>Developer Installation</a> notes for more information about these jars.
+        </p>
+        
+    <h2>backup</h2>
+      <p class=L2>The <b>backup</b> target performs the following operations.
+      </p>
+      
+        <p class=L3>
+          1. Invokes the <b>prepare</b> target.
+        </p>
+
+        <p class=L3>
+          2. Creates a backup of the development system in a compressed tar file stored in the
+          <b>backups</b> directory. The name of the back file includes the date, time and armidale version
+          as showing the following example.
+        </p>
+      
+          <p class=L4Code>20020301_1452_armidale-0.9.2.tgz
+          </p>
+        
+    <h2>help</h2>
+    
+    <p class=L2>The <b>help</b> target will list each target along with a brief description.
+    
+    <h2>show_config</h2>
+    
+    <p class=L2>The <b>show_config</b> target will list each of the variables used by the <font class=arm>armidale</font>
+    build system.
+    </p>
+  
+</body>
+</html>

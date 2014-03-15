@@ -1,0 +1,20 @@
+<ArmidaleClass name="armidale.api.gui.Desktop"
+               extends="armidale.api.gui.Widget"
+               abstract="no"
+>
+
+  <list name="internalFrame"
+        type="@armidale.api.gui.InternalFrame"
+  />
+  
+  <attribute name="wallpaper"
+             type="@armidale.api.gui.Image"
+  />
+  
+  <attribute name="wallpaperMode"
+             type="int"
+             constants="armidale.api.gui.constants.WallpaperModes"
+             default="TILED"
+  />
+  
+</ArmidaleClass>

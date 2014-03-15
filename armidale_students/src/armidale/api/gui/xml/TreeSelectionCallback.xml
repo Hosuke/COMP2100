@@ -1,0 +1,8 @@
+<callback>
+  <method name="nodeSelected">
+    <parameter name="path"
+               type="@armidale.api.ArmidaleObject[]"
+    />
+  </method>
+</callback>
+

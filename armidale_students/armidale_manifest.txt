@@ -1,0 +1,2 @@
+main-class: armidale.launcher.Main
+

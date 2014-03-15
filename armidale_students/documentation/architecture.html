@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+
+<html>
+<head>
+  <title>developing armidale applications</title>
+  <link href="armidale.css" rel=stylesheet type="text/css"/>
+</head>
+
+<body>
+
+  <h1>The armidale architecture</h1>
+
+    <p class=redNote>
+      A technical conference paper is being written (March 2002) to describe the armidale architecture.
+      So, for now the following notes and a commented sample application are provided to help developers
+      understand the overall structure of the armidale system.
+    </p>
+    
+    <h2>armidale applications</h2>
+    
+      <a name="init"/>
+
+      <p class=L2><font class=arm>armidale</font> applications are simply classes that extend the 
+      <font class=code>armidale.api.Application</font> class and provide an implementation for the
+      inherited <font class=code>init()</font> method.
+      </p>
+      
+      <p class=L2>The <b>init()</b> method is the "main" method of an <font class=arm>armidale</font> application.
+      </p>
+      
+      <p class=L2>User interfaces are created using the <font class=code>armidale.api.gui.*</font> API. This API
+      provides a set of GUI object factories which create instances of classes that implement
+      specific GUI objects interfaces. For example, the <font class=code>armidale.api.gui.PushButtonFactory</font>
+      creates instances of classes that implement the <font class=code>armidale.api.gui.PushButton</font>
+      interface. The particular implementation returned by a factory depends on the context in
+      which the application is running.
+      </p>
+      
+      <p class=L2>If the application is running in a local context (ie. no internet or intranet involved),
+      then the factory will create an implementation that displays a PushButton on the local machine
+      (using platform specific widgets such as Java Swing).
+      </p>
+      
+      <p class=L2>If, on the other hand, the application is being run by an <font class=arm>armidale</font> server 
+      in response to a client request via the internet or intranet, the factory will create an implementation that
+      sends messages to the client directing it to display a PushButton on the clients computer.
+      </p>
+      
+      <p class=L2>Application developers do not need to concern themselves with the context in which their
+      applications will be used. They simply write their applications using the <font class=arm>armidale</font>
+      API as if they were stand-alone programs.
+      </p>
+      
+    <h2>The armidale GUI API</h2>
+    
+      <p class=L2>The <font class=arm>armidale</font> GUI API implements a rich set of GUI objects including frames, buttons, lists,
+      images, etc. In most cases, the objects operate in way similar to their corresponding swing widget. One exception 
+      is the way in which <font class=arm>armidale</font> manages panels.
+      </p>
+      
+      <p class=L2>In <font class=arm>armidale</font>, there are a range of panels. Each panel has a fixed layout manager
+      (eg. BorderPanel, BoxPanel, GridPanel, FlowPanel, SplitPanel etc.). Any widget (including other panels) can
+      be located on an <font class=arm>armidale</font> panel. This approach contrasts with Swing where the layout
+      of widgets on a panel is managed by a separate layout manager which can be changed at any time.
+      </p>
+      
+    <h2>Client-Server operation</h2>
+   
+      <h3>The connection</h3>
+      
+      <p class=L3>The <font class=arm>armidale</font> server (<font class=code>armidale.api.Server</font>) is a
+      very simple Java program. It listens on a specified port for TCP/IP connections from clients. All clients,
+      including the <font class=arm>armidale launcher</font>, make use of the 
+      <font class=code>armidale.api.RemoteApplication</font> class to start applications on remote
+      <font class=arm>armidale</font> servers. This class is instantiated with the URL of a remote application and
+      any required arguments. When an instance
+      of this class is created, it sends a CONNECT message to the server containing the name of the application the
+      client wants to run and the list of arguments. This application name is in fact the name of a Java class that
+      extends <font class=code>armidale.api.Application</font>, is installed on the server computer, and is visible
+      to the <font class=arm>armidale</font> server (ie. on its class path).
+      </p>
+      
+      <p class=L3>When a server receives a CONNECT message from a client, it creates a server context associated with the
+      requesting client that contains details of the connection and an object registry used to track objects
+      distributed across the connection. This context is then used to create an instance of the requested application
+      class. If everything is OK, a CLASS_INFORMATION message is sent back to the client specifying any special
+      requirements the application may have (such as non-standard widgets). If a problem occurs on the server (such as
+      a missing application class), an ERROR message is returned to the client.
+      </p>
+
+      <p class=L3>When the client receives the CLASS_INFORMATION message it checks that it is able to satisfy the needs of the 
+      remote application (eg. availability of any special widgets). If all is well, the client will send a CLIENT_OK message
+      to the server.
+      </p>
+      
+      <p class=L3>When the server receives the CLIENT_OK message, it calls the <font class=code>start()</font>
+      method of the requested application instance (which is a Java Thread). When the application is started,
+      the <font class=code>init()</font> method (described <a href="#init">above</a>)
+      is called. The <font class=code>init()</font> method, defined by the application developer, will usually create 
+      a user interface and set up callbacks. The application then waits for and processes EVENT messages from the client.
+      </p>
+    
+      <h3>Object Creation</h3>
+      
+      <p class=L3>When an application creates a new GUI object such as a PushButton (using the PushButtonFactory), the server
+      implementation of the object sends a CONSTRUCT message to the client. When the client receives a CONSTRUCT message
+      it uses the applicable widget factory to create a instance of the required class within the client context.
+      These client implementations have a unique identifier (registered with the context object registry) and an
+      associated instance of the class within a platform context (eg. swing). These platform context objects
+      display the GUI widgets on the client computer.
+      </p>
+    
+      <h3>Changing Object Attributes</h3>
+      
+      <p class=L3>When an application modifies an attribute of a GUI object, such as the title of a PushButton, the server implementation
+      of the object sends a SET_ATTRIBUTE message to the client. When the client receives a SET_ATTRIBUTE message, it dispatches it to
+      the applicable object for processing.
+      </p>
+      
+      <h3>Callbacks and Events</h3>
+      
+      <p class=L3>Many of the GUI widgets supported by <font class=arm>armidale</font> are capable of generating events. PushButtons, 
+      for example, are able to generate ACTION events. Events are handled in <font class=arm>armidale</font> by callbacks.
+      Callbacks are classes which define methods that are called when an event is generated by a widget. These callback
+      classes are extended by the application programmer to define the required response to events and are registered
+      with a widget of interest.
+      </p>
+      
+      <p class=L3>When a client event occurs (eg. the user clicks a PushButton), an EVENT message is sent to the application
+      running on the server. When the server receives an EVENT message it is dispatched to the associated object for processing. 
+      When an object receives an EVENT message it calls the applicable method in each of the callbacks registered with it.</p>
+      
+      <p class=L3>Event messages are only sent from the client to the server if one or more callbacks are
+      registered with the subject widget.
+      </p>
+      
+      <a name="filesystem"/>
+      <h3>Image handling</h3>
+      
+      <p class=L3>When an application creates an <b>Image</b> object a CONSTRUCT message is sent to the client and processed in the 
+      normal way. No image data is involved at this stage. The application can then set the image data by calling 
+      the <b>setImageData()</b> or <b>setFile()</b> methods.
+      </p>
+      
+      <p class=L3>When the <b>setImageData()</b> method is used, image data is simply sent to the client
+      and displayed as required.
+      </p>
+      
+      <p class=L3>A more efficient approach is to use the <b>setFile()</b> method which takes the name
+      of a file in the <font class=arm>armidale</font> filesystem. This filesystem is simply a directory within the users home
+      directory called <b>.armidale/filesystem</b> and is created during the <a href="userinstall.html">user
+      installation process</a>. When the <b>setFile()</b> method is used, the name of the file and its date-time stamp are
+      sent to the client. When the client receives such a message, it attempts to open a file with the same name 
+      in its local <font class=arm>armidale</font> filesystem. If the file exists on the client and has the same
+      date-time stamp, the image is displayed as required. 
+      </p>
+      
+      <p class=L3>If the required file does not exist in the client's filesystem, or the date-time stamp is incorrect, then
+      the client will request a copy of the file from the server. The server will then send the file to the client,
+      and it will be saved on the client's <font class=arm>armidale</font> filesystem. The contents of
+      the file are then displayed in the normal way.
+      </p>
+      
+      <p class=L3>The above approach implements a simple, but effective image cache.
+      </p>
+      
+      <h3>Handing large data structures</h3>
+      
+      <p class=L3><font class=arm>armidale</font> is able to efficiently display information from very large data structures
+      or models in lists and tables on the client. The technique ensures that only those items that are visible and are 
+      needed for smooth scrolling of lists and tables are passed from the server to the client. As a list or table is 
+      scrolled by the user, items that are not yet available on the client are displayed as "please Wait...". When the
+      user stops scrolling a request is sent to the server for any items that need to be displayed. When the items
+      arrive at the client the 'please wait..." messages are replaced with the real data.
+      </p>
+      
+      <h3>armidale messaging</h3>
+      
+      <p class=L3>The <font class=arm>armidale</font> system uses TCP/IP to pass messages between clients and servers.
+      Messages use a simple binary format comprising a 32 bit message length and a set of data items. Data items 
+      can be primitive type values such as int, byte, float, double etc., or more complex types like String, Color
+      and Font. The <font class=code>armidale.api.context.clientserver.Message</font> class provides an API for
+      constructing and interpreting <font class=arm>armidale</font> messages.
+
+    <h2>Sample Application Source Code</h2>
+    
+      <p class=L2>The commented source code of a simple application can be found
+      <a href="simpleapp_source.html">here</a>. In addition, the following
+      <font class=arm>armidale</font> classes and packages are a good place to start understanding
+      the operation of <font class=arm>armidale</font>.
+      </p>
+      
+         <p class=L3Code>
+           armidale.api.Application
+           <br/>
+           armidale.api.Server
+           <br/>
+           armidale.api.RemoteApplication
+           <br/>
+           armidale.api.context.*
+         </p>
+         
+       <p class=L2>To learn more about the operation of a typical widget, I suggest you look at the
+       following classes that implement the PushButton widget.You may also need to look at each of
+       their parent classes.
+       </p>
+
+         <p class=L3Code>
+           armidale.api.gui.PushButton
+           <br/>
+           armidale.api.gui.PushButtonFactory
+           <br/>
+           armidale.api.gui.impl.clientserver.PushButtonClientImpl
+           <br/>
+           armidale.api.gui.impl.clientserver.PushButtonServerImpl
+           <br/>
+           armidale.api.gui.impl.platform.swing.PushButtonImpl
+           <br/>
+         </p>
+       
+        
+</body>
+</html>

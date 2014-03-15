@@ -1,0 +1,10 @@
+<ArmidaleClass name="armidale.api.gui.GridPanel"
+               extends="armidale.api.gui.Panel"
+               abstract="no"
+>
+
+  <list name="widget" 
+        type="@armidale.api.gui.GridPanelWidget"
+  />
+
+</ArmidaleClass>

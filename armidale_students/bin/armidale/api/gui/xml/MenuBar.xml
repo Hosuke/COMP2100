@@ -1,0 +1,10 @@
+<ArmidaleClass name="armidale.api.gui.MenuBar"
+               extends="armidale.api.gui.Component"
+               abstract="no"
+>
+
+  <list name="menu"
+        type ="@armidale.api.gui.Menu"
+  />
+ 
+</ArmidaleClass>

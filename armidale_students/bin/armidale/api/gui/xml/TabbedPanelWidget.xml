@@ -1,0 +1,60 @@
+<ArmidaleClass name="armidale.api.gui.TabbedPanelWidget"
+               extends="armidale.api.ArmidaleObject"
+               abstract="no"
+>
+  <attribute name="widget"
+             type="@armidale.api.gui.Widget"
+  >
+    <documentation>
+      the widget shown in the tab
+    </documentation>
+  </attribute>
+  
+  <attribute name="title"
+             type="String" 
+             default="&quot;tab&quot;"
+  >
+    <documentation>
+      the title of the tab
+    </documentation>
+  </attribute>
+  
+  <attribute name="icon"
+             type="@armidale.api.gui.Image"
+  >
+    <documentation>
+      the icon displayed to the left of the tab title
+    </documentation>
+  </attribute>
+  
+  <createMethod name="create">
+    <documentation>
+      an alternate create method d oiej dioejiod eiodj eoid joiejd ioe dioe doiejd 
+      doiej doijeiod eiojd oie jdioe jdio jeoid jeoi dioe doie 
+      edoi eijd 8eu983 d983ud983e du3hfidh 38fu83r9uf89r3 f
+    </documentation>
+    <attribute name="widget"/>
+  </createMethod>
+  
+  <createMethod name="create">
+    <documentation>
+      an alternate create method d oiej dioejiod eiodj eoid joiejd ioe dioe doiejd 
+      doiej doijeiod eiojd oie jdioe jdio jeoid jeoi dioe doie 
+      edoi eijd 8eu983 d983ud983e du3hfidh 38fu83r9uf89r3 f
+    </documentation>
+    <attribute name="widget"/>
+    <attribute name="title"/>
+  </createMethod>
+  
+  <createMethod name="create">
+    <documentation>
+      an alternate create method d oiej dioejiod eiodj eoid joiejd ioe dioe doiejd 
+      doiej doijeiod eiojd oie jdioe jdio jeoid jeoi dioe doie 
+      edoi eijd 8eu983 d983ud983e du3hfidh 38fu83r9uf89r3 f
+    </documentation>
+    <attribute name="widget"/>
+    <attribute name="title"/>
+    <attribute name="icon"/>
+  </createMethod>
+    
+</ArmidaleClass>

@@ -1,0 +1,6 @@
+<ArmidaleClass name="armidale.api.gui.RadioButton"
+               extends="armidale.api.gui.Toggle"
+               abstract="no"
+> 
+
+</ArmidaleClass>

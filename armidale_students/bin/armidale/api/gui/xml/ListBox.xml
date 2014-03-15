@@ -1,0 +1,12 @@
+<ArmidaleClass name="armidale.api.gui.ListBox"
+               extends="armidale.api.gui.Widget"
+               abstract="No"
+>
+
+  <attribute name="listData"
+             type="@armidale.api.gui.ListData"
+  />
+  
+  <include filename="ListSelectionCallback.xml"/>
+  
+</ArmidaleClass>

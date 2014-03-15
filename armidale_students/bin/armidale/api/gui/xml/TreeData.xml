@@ -1,0 +1,11 @@
+<ArmidaleClass  name="armidale.api.gui.TreeData"
+                extends="armidale.api.ArmidaleObject"
+                abstract="No"
+>
+
+  <tree name="Item"
+        type="@armidale.api.ArmidaleObject"
+        callback="yes"
+  />
+
+</ArmidaleClass>
