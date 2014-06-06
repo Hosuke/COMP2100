@@ -1,0 +1,11 @@
+Testsuite: armidale.api.io.FileTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.027 sec
+
+Testcase: testFile(armidale.api.io.FileTest):	Caused an ERROR
+Permission denied
+java.io.IOException: Permission denied
+	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+	at java.io.File.createNewFile(File.java:1006)
+	at armidale.api.io.FileTest.createFiles(Unknown Source)
+
+

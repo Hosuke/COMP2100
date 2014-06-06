@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="optionalPlugin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/findbugs-2.0.3/optionalPlugin/poweruser.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/findbugs-2.0.3/optionalPlugin/bugCollectionCloud.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/findbugs-2.0.3/optionalPlugin/noUpdateChecks.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

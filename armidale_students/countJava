@@ -1,0 +1,153 @@
+#!/usr/bin/env python
+
+'''
+Huang Geyang
+
+Useful sourses to write this program:
+http://pymotw.com/2/optionparse/
+http://www.saltycrane.com/blog/2009/09/python-optionparse-example/
+http://docs.python.org/2/library/optionparse.html#module-optionparse/
+'''
+
+import sys
+file_name = ''
+
+
+def compute(file_name):
+    global t
+    global total_t
+    global s
+    global total_s
+    global c
+    global total_c
+    global b
+    global total_b
+
+    t = 0
+    total_t = 0
+    s = 0
+    total_s = 0
+    c = 0
+    total_c = 0
+    b = 0
+    total_b = 0
+
+
+    file_handler = open(file_name)
+    is_type_one = False
+
+    for line in file_handler:
+        t += 1
+        # clear spaces
+        line = line.strip()
+
+        # count comment line
+        # /*... ...*/
+        if line[0:2] == '/*' and line[len(line)-2:len(line)] != '*/':
+            is_type_one = True
+
+        if (is_type_one):
+            c += 1
+            if line[0:2] == '*/':
+                is_type_one = False
+
+        # //
+        if line[0:2] == '//':
+            c += 1
+
+        # /*...*/
+        if line[0:2] == '/*' and line[len(line)-2:len(line)] == '*/':
+            c += 1
+
+        # count blank lines
+        if len(line) == 0:
+            b += 1
+
+    s = t - c - b
+    
+    total_t += t
+    total_s += s
+    total_c += c
+    total_b += b
+
+    return (t,s,c,b)
+
+def is_option(option):
+    return option in ["-t","-s","-c","-b","-a"]
+
+def print_options(options):
+    #execute every option
+    for option in options:
+        if (option == '-t'):
+            print ('  {:5} ({:.0%})   {:}'.format(float(t),float(t)/float(t),file_name))
+        if (option == '-s'):
+            print ('  {:5} ({:.0%})   {:}'.format(float(s),float(s)/float(t),file_name))
+        if (option == '-c'):
+            print ('  {:5} ({:.0%})   {:}'.format(float(c),float(c)/float(t),file_name))
+        if (option == '-b'):
+            print ('  {:5} ({:.0%})   {:}'.format(float(b),float(b)/float(t),file_name))
+        if (option == '-a'):
+            print ('  {:5}({:.0%})  {:5}({:.0%})   {:5}({:.0%})  {:5}({:.0%})   {:}'.format(t,t/t,s,float(s)/float(t),c,float(c)/float(t),b,float(b)/float(t),file_name))
+
+def main():
+    if len(sys.argv[1:])>1:
+        command = []
+        options = []
+        command = sys.argv[1:]
+
+        global file_name
+        file_name = command[0];
+
+        # Handle single file
+        if len(command) == 2 and is_option(command[1]):
+            (t,s,c,b) = compute(file_name)
+            options.append(command[1])
+            print_options(options)
+
+        # Handle single file with multiple options
+        elif len(command) < 7:
+            (t,s,c,b) = compute(file_name)
+
+            for arg in command[1:]:
+                if is_option(arg):
+                    options.append(arg)
+            print_options(options)
+
+    # Piping
+    else:
+        options = sys.argv[1:]
+        if len(options) == 0 or options[0] == "-a":
+            files = sys.stdin.readlines()
+            files = [line.rstrip().split() for line in files]
+
+            for file in files:
+                file_name = file[0]
+                compute(file[0])
+                print_options(["-a"])
+            print (' {:5}({:.0%})  {:5}({:.0%})   {:5}({:.0%})  {:5}({:.0%})   {:}'.format(total_t,total_t/total_t,total_s,float(total_s)/float(total_t),total_c,float(total_c)/float(total_t),total_b,float(total_b)/float(total_t),'TOTAL'))
+
+        # Handle single option
+        elif is_option(options[0]):
+            files = sys.stdin.readlines()
+            files = [line.rstrip().split() for line in files]
+
+            for file in files:
+                file_name = file[0]
+                compute(file[0])
+                print_options(options)
+
+            if (options[0] == '-t'):
+                print ('{:5} ({:.0%})   {:}'.format(float(total_t),float(total_t)/float(total_t),"TOTAL"))
+
+            if (options[0] == '-s'):
+                print ('{:5} ({:.0%})   {:}'.format(float(total_s),float(total_s)/float(total_t),"TOTAL"))
+
+            if (options[0] == '-c'):
+                print ('{:5} ({:.0%})   {:}'.format(float(total_c),float(total_c)/float(total_t),"TOTAL"))
+
+            if (options[0] == '-b'):
+                print ('{:5} ({:.0%})   {:}'.format(float(total_b),float(total_b)/float(total_t),"TOTAL"))
+                
+
+if __name__=='__main__':
+    main()

@@ -443,25 +443,25 @@ public class Message {
     int  objectId;
     int  attributeId;
     int  methodId;
-//    System.out.print("Transport Error: ");
+    System.out.print("Transport Error: ");
     switch (messageType) {
       case MessageTypes.SET_ATTRIBUTE:
         resetReadPtr();
         objectId = readObjectId();
         attributeId = readInt();
-//        System.out.println("SET_ATTRIBUTE object=" + objectId + " attribute=" + attributeId);
+        System.out.println("SET_ATTRIBUTE object=" + objectId + " attribute=" + attributeId);
         break;
       case MessageTypes.METHOD_CALL:
         resetReadPtr();
         objectId = readObjectId();
         methodId = readInt();
-//        System.out.println("METHOD_CALL object=" + objectId + " method=" + methodId);
+        System.out.println("METHOD_CALL object=" + objectId + " method=" + methodId);
         break;
       case MessageTypes.CALLBACK:
         resetReadPtr();
         objectId = readObjectId();
         methodId = readInt();
-//        System.out.println("CALLBACK object=" + objectId + " method=" + methodId);
+        System.out.println("CALLBACK object=" + objectId + " method=" + methodId);
         break;
     }
     throw new UncheckedException(t);

@@ -33,22 +33,35 @@ package armidale.api.io;
 import armidale.api.UncheckedException;
 import armidale.api.Environment;
 import armidale.api.structures.ByteArray;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 public class File {
 
-  private final static  String        root      = Environment.armidaleFileSystemPath() + java.io.File.separator;
-
+  private final static  String        armidaleRoot      = Environment.armidaleFileSystemPath() + java.io.File.separator;
+  private final static  String        localRoot = System.getProperty("user.home");
+  
   private               String        filename;
   private               java.io.File  javaFile;
-
+  private static Boolean isLocalRoot = false;
 
   public File(String filename) {
     this.filename = filename;
-    javaFile = new java.io.File(root + filename);
+  
+    if (filename.startsWith("/"))
+    {
+    	// the local computer's file system
+    	javaFile = new java.io.File(localRoot + filename);
+    	isLocalRoot = true;
+    }
+    else
+    {
+    	// the '~/.armidale/filesystem' directory
+    	javaFile = new java.io.File(armidaleRoot + filename);
+    	isLocalRoot = false;
+    }
   }
 
 
@@ -67,18 +80,24 @@ public class File {
     javaFile.setLastModified((long) lastModified * 1000);
   }
 
-
+//changed
   public static String getRoot() {
-    return root;
+	  if (isLocalRoot)
+		  return localRoot;
+	  else
+		  return armidaleRoot;
   }
   
   public String getName() {
     return filename;
   }
 
-
+// changed, may have bugs
   public String getPath() {
-    return root + filename;
+	  if (isLocalRoot)
+		  return localRoot + filename;
+	  else
+		  return armidaleRoot + filename;
   }
 
 
@@ -141,6 +160,5 @@ public class File {
   public void writeByteArray(ByteArray fileData) {
     writeBytes(fileData.getBytes());
   }
-
 }
 

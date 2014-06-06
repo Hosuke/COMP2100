@@ -53,6 +53,7 @@ public class FileDisplay extends Application {
 	private  int[] indices;
 	
 	private  Label  noFoundLabel;
+	
 
 	public void init() {
 		Frame frame = FrameFactory.create(context);

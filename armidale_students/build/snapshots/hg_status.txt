@@ -1,0 +1,4 @@
+M build.xml
+M build/snapshots/TEST-armidale.api.io.FileTest.txt
+M build/snapshots/hg_status.txt
+M build/snapshots/snapshotReport.html

@@ -1,22 +1,35 @@
-<project name="armidale" default="help" >
+<project name="armidale" default="help" xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <property name="product"              value="armidale"/>
-  <property name="version"              value="0.9.6" />
+  <property name="version"              value="0.9.5" />
   <property name="short_name"           value="${product}-${version}" />
   <property name="long_name"            value="${product}, version ${version}" />
 
   <property name="backups"              value="backups" />
-  
+
+  <property name="developer"            value="" />
   <property name="developer_src"        value="src" />
   <property name="developer_filesystem" value="filesystem" />
   <property name="developer_doc"        value="documentation" />
   <property name="developer_javadoc"    value="javadoc" />
-  
+
+  <property name="user_file_system"     value="${user.home}/.armidale/filesystem" />
+
+  <property name="developer_javadoc"    value="${developer}/javadoc" />
+
+  <property name="lib"                value="lib" />
+
   <property name="build"                value="build" />
   <property name="build_jars"           value="${build}/jars" />
   <property name="build_classes"        value="${build}/classes" />
   <property name="build_distribution"   value="${build}/distribution" />
-  
+
+  <!-- add snapshots dir -->
+  <property name="build_snapshots"   value="${build}/snapshots" />
+
+  <!-- findbug dir -->
+  <property name="findBugs.dir"        value="lib" />
+
   <property name="javadoc_header"       value="${long_name}" />
   <property name="javadoc_footer"       value="&lt;i&gt;Copyright &#169; 2000-2002 Shayne R Flint. All Rights Reserved.&lt;/i&gt;" />
 
@@ -26,9 +39,10 @@
     <echo message="version              = ${version}" />
     <echo message="short_name           = ${short_name}" />
     <echo message="long_name            = ${long_name}" />
-    <echo message="" />    
+    <echo message="" />
     <echo message="backups              = ${backups}" />
-    <echo message="" />    
+    <echo message="" />
+    <echo message="developer            = ${developer}" />
     <echo message="developer_src        = ${developer_src}" />
     <echo message="developer_filesystem = ${developer_filesystem}" />
     <echo message="developer_doc        = ${developer_doc}" />
@@ -59,15 +73,18 @@
     <echo message="        show_config        - show property values" />
   </target>
 
-  
+
   <target name="clean">
     <delete dir="${build}" />
     <delete>
       <fileset dir="${developer_src}" includes="**/*.class" />
     </delete>
+    <delete>
+      <fileset defaultexcludes="no" dir="${developer}" includes="**/*~" />
+    </delete>
   </target>
 
-  
+
   <target name="prepare">
     <tstamp/>
     <mkdir dir="${build}" />
@@ -75,12 +92,24 @@
     <mkdir dir="${build_classes}" />
     <mkdir dir="${build_distribution}" />
     <mkdir dir="${backups}" />
+    <mkdir dir="${user_file_system}"/>
+
+    <!-- make dir for snapshots -->
+    <mkdir dir="${build_snapshots}"/>
   </target>
 
-  
+  <target name="copy">
+     <copy todir="${user_file_system}">
+       <fileset dir="${developer_filesystem}"/>
+     </copy>
+  </target>
+
   <target name="compile_all" depends="prepare">
+    <!-- Add Junit -->
     <javac srcdir="${developer_src}"
            destdir="${build_classes}"
+            includeantruntime = "False"
+            classpath = "lib/junit-4.11.jar"
     />
   </target>
 
@@ -97,6 +126,7 @@
     <exec executable="javadoc"
     >
       <arg line="-breakiterator"/>
+      <arg line="-linksource"/>
       <arg line="-overview &quot;${developer_src}/overview.html&quot;"/>
       <arg line="-bottom &quot;${javadoc_footer}&quot;"/>
       <arg line="-doctitle &quot;&lt;div&gt;&lt;img src='../documentation/images/armidale.png'; width=450 height=100 align=right border=0 alt='armidale intro logo'&gt;&lt;div&gt;&quot;"/>
@@ -111,30 +141,31 @@
       <arg line="-group &quot;armidale Browser&quot; &quot;armidale.browser*&quot;"/>
     </exec>
   </target>
-  
-  
-  <target name="build_jar" depends="compile_all">
-    <delete file="${build_jars}/${product}.jar" />
-    <jar jarfile="${build_jars}/${product}.jar"
-         manifest="${product}_manifest.txt"
-    >
-      <fileset dir = "${build_classes}"
-               includes="Home.class, armidale/api/**, armidale/launcher/**, armidale/test/**, armidale/utilities/preferences/**"
-      />
-    </jar>
-  </target>
 
-  
-  <target name="build_distribution" depends="compile_all, build_javadoc, build_jar">  
-  
+
+
+    <target name="build_jar" depends="compile_all">
+      <delete file="${build_jars}/${product}.jar" />
+      <jar jarfile="${build_jars}/${product}.jar"
+           manifest="${developer}/${product}_manifest.txt"
+      >
+        <fileset dir = "${build_classes}"
+                 includes="Home.class, armidale/api/**, armidale/launcher/**, armidale/test/**, armidale/utilities/preferences/**"
+        />
+      </jar>
+    </target>
+
+
+  <target name="build_distribution" depends="compile_all, build_javadoc, build_jar, copy">
+
     <delete file="${build_distribution}/${short_name}-user.jar" />
     <jar jarfile="${build_distribution}/${short_name}-user.jar"
-         manifest="user_manifest.txt"
+         manifest="${developer}/user_manifest.txt"
     >
       <fileset dir="${build}"
                includes="jars/**"
       />
-      <fileset dir="."
+      <fileset dir="${developer}"
                includes="filesystem/**"
 	       excludes="filesystem/demos/**"
       />
@@ -151,9 +182,9 @@
 
     <delete file="${build_distribution}/${short_name}-documentation.jar" />
     <jar jarfile="${build_distribution}/${short_name}-documentation.jar"
-         manifest="documentation_manifest.txt"
+         manifest="${developer}/documentation_manifest.txt"
     >
-      <fileset dir="."
+      <fileset dir="${developer}"
                includes="documentation/**"
       />
       <fileset dir="${build_classes}"
@@ -169,10 +200,10 @@
 
     <delete file="${build_distribution}/${short_name}-developer.jar" />
     <jar jarfile="${build_distribution}/${short_name}-developer.jar"
-         manifest="developer_manifest.txt"
+         manifest="${developer}/developer_manifest.txt"
     >
       <fileset dir="."
-               includes="*.xml, *.txt, ${developer_src}/**, ${developer_javadoc}/**, ${developer_doc}/**, ${developer_filesystem}/**"
+               includes="${developer}/*.xml, ${developer}/*.txt, ${developer_src}/**, ${developer_javadoc}/**, ${developer_doc}/**, ${developer_filesystem}/**"
       />
       <fileset dir="${build_classes}"
                includes="armidale/utilities/install/DeveloperInstaller.class, armidale/api/ProductInfo.class, armidale/api/Environment.class"
@@ -186,7 +217,7 @@
     </jar>
   </target>
 
-  
+
   <target name="make_classes" depends="compile_utilities">
     <exec dir="${developer_src}"
           executable="sh"
@@ -194,19 +225,160 @@
     >
       <arg line="makeguiclasses -platforms swing"/>
     </exec>
-  </target>  
+  </target>
 
-  
+
   <target name="backup" depends="prepare">
     <tar tarfile="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar"
          basedir="."
-         includes="${developer_src}/**, ${developer_filesystem}/**, ${developer_doc}/**, *.xml, *.txt"
+         includes="${developer_src}/**, ${developer_filesystem}/**, ${developer_doc}/**, ${developer}/*.xml, ${developer}/*.txt"
     />
     <gzip zipfile="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tgz"
           src="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar"
     />
     <delete file="${backups}/${DSTAMP}_${TSTAMP}_${short_name}.tar" />
   </target>
+
+<!-- Week 07 -->
+
+  <!-- Download Ivy-->
+  <property name="ivy.install.version" value="2.1.0-rc2" />
+      <condition property="ivy.home" value="${env.IVY_HOME}">
+        <isset property="env.IVY_HOME" />
+      </condition>
+      <property name="ivy.home" value="${user.home}/.ant" />
+      <property name="ivy.jar.dir" value="${ivy.home}/lib" />
+      <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy.jar" />
+
+      <target name="download-ivy" unless="offline">
+
+          <mkdir dir="${ivy.jar.dir}"/>
+          <!-- download Ivy from web site so that it can be used even without any special installation -->
+          <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+               dest="${ivy.jar.file}" usetimestamp="true"/>
+      </target>
+
+      <target name="init-ivy" depends="download-ivy">
+        <!-- try to load ivy here from ivy home, in case the user has not already dropped
+                it into ant's lib dir (note that the latter copy will always take precedence).
+                We will not fail as long as local lib dir exists (it may be empty) and
+                ivy is in at least one of ant's lib dir or the local lib dir. -->
+          <path id="ivy.lib.path">
+              <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+
+          </path>
+          <taskdef resource="org/apache/ivy/ant/antlib.xml"
+                   uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+      </target>
+
+  <!-- add resolve(retrieve ivy here) -->
+  <target name="resolve-ivy" depends="init-ivy">
+          <ivy:retrieve />
+      </target>
+
+  <!-- count_java -->
+  <!-- run compile_all before it -->
+  <target name="count_java">
+    <exec executable="findJava" failonerror="true">
+        <arg line="src"/>
+        <redirector output="build/snapshots/countJava.txt"/>
+    </exec>
+    <exec executable="countJava" failonerror="true"
+        input = "build/snapshots/countJava.txt">
+        <redirector output="build/snapshots/countJava.txt"/>
+    </exec>
+  </target>
+
+  <!-- test_all -->
+      <!-- dir -->
+      <property name="lib.dir" value="lib"/>
+      <property name="classes.dir" value="build/classes"/>
+      <property name="junit.out.dir.xml" value="build/classes"/>
+
+      <!-- path -->
+      <path id="classpath.test">
+        <path path="${java.class.path}"/>
+        <pathelement location="${classes.dir}"/>
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <path location="${classes.dir}"/>
+      </path>
+
+    <target name="test_all" depends="compile_all">
+        <junit printsummary="yes" haltonfailure="no" fork="yes" maxmemory="512m" outputtoformatters = "true">
+            <classpath refid="classpath.test"/>
+            <formatter type="brief"/>
+            <!-- output to dir build/snapshots/ -->
+            <batchtest fork="yes" todir="build/snapshots/">
+                <fileset dir="${classes.dir}" includes="**/FileTest.class"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <!-- findbugs -->
+    <target name="download_findbugs" unless="offline">
+        <property name="findBugs.jar.file"   value="${findBugs.dir}/**/**/findbugs.jar" />
+        <property name="findBugs.gz.file"    value="${findBugs.dir}/findBugs.tar.gz" />
+        <property name="findBugs.tar.file"   value="${findBugs.dir}/findBugs.tar" />
+
+        <mkdir dir="${findBugs.dir}"/>
+        <get src="http://prdownloads.sourceforge.net/findbugs/findbugs-2.0.3.tar.gz?download"
+             dest="${findBugs.gz.file}"
+             usetimestamp="true"/>
+        <!-- unzip -->
+        <gunzip src="${findBugs.gz.file}" dest="${findBugs.tar.file}"/>
+        <untar src="${findBugs.tar.file}" dest="${findBugs.dir}"/>
+    </target>
+
+    <target name="findbugs" depends="compile_all, download_findbugs">
+    <exec executable="bash">
+        <arg value="-c"/>
+        <arg value="java -jar ${findBugs.jar.file} -textui -html:fancy.xsl -output ${build_snapshots}/findBugsReport.html -auxclasspath ${lib}  ${build_classes}"/>
+    </exec>
+    </target>
+
+    <!-- hg_commit -->
+    <!-- add -> status -> commit -->
+    <target name="hg_add" depends="compile_all">
+        <exec executable="bash">
+          <arg value="-c"/>
+          <arg value="hg add"/>
+        </exec>
+    </target>
+
+    <target name="hg_status" depends="hg_add">
+        <exec executable="bash">
+          <arg value="-c"/>
+          <arg value="hg status > ${build_snapshots}/hg_status.txt"/>
+        </exec>
+    </target>
+
+    <target name="hg_commit" depends="hg_status">
+        <tstamp>
+          <format property="commit_time"
+                  pattern="MM/dd/yyyy hh:mm:ss aa"
+                  unit="hour"/>
+        </tstamp>
+        <exec executable="bash">
+          <arg value="-c"/>
+          <arg value="hg commit -m &quot;${commit_time} Ant Build&quot;"/>
+        </exec>
+    </target>
+
+    <!-- Summary report -->
+    <target name="summary_report" depends="count_java, test_all, findbugs, hg_commit">
+        <exec executable="bash">
+            <arg value="-c"/>
+            <arg value="python ${basedir}/reportGen.py"/>
+        </exec>
+    </target>
+
+    <!-- Snapshot -->
+    <target name="snapshot" depends="resolve-ivy, summary_report, hg_commit">
+        <exec executable="bash">
+            <arg value="-c"/>
+            <arg value="hg push"/>
+        </exec>
+    </target>
 
 </project>
 

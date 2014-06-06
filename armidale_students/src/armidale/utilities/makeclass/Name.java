@@ -36,8 +36,6 @@ class Name extends DocumentedItem {
 
   public     String         name;
 
-  protected  ArmidaleClass  theClass;
-
 
   public Name(Node node, ArmidaleClass theClass) {
     super(node);

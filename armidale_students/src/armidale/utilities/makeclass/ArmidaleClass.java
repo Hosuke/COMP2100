@@ -625,23 +625,23 @@ class ArmidaleClass extends DocumentedItem {
           output.println("   * @see armidale.api.context.platform." + Strings.capitalize(platforms[i]) + "Context");
           output.println("   * @see armidale.api.context.clientserver." + Strings.capitalize(platforms[i]) + "ClientContext");
         }
+        for (int i = 0; i < platforms.length; i++) {
+            output.println("    } else if (context instanceof " + Strings.capitalize(platforms[i]) + "Context) {");
+            output.println("        return new " + platformPackage + "." + platforms[i] + "." + className.name + "Impl();");
+            output.println("    } else if (context instanceof " + Strings.capitalize(platforms[i]) + "ClientContext) {");
+            output.println("        " + className.name + " " + platforms[i] + className.name + " = new " + platformPackage + "." + platforms[i] + "." + className.name + "Impl();");
+            output.println("        return new " + clientPackage + "." + className.name + "ClientImpl((ClientContext)context, " + platforms[i] + className.name + ");");
+          }
+          output.println("    } else {");
+          output.println("        return null;");
+          output.println("    }");
+          output.println("  }");
       }
       closeDocumentation(output);
 
       output.println("  public static " + className.name + " create(Context context) {");
       output.println("    if (context instanceof ServerContext) {");
       output.println("        return new " + serverPackage + "." + className.name + "ServerImpl((ServerContext)context);");
-      for (int i = 0; i < platforms.length; i++) {
-        output.println("    } else if (context instanceof " + Strings.capitalize(platforms[i]) + "Context) {");
-        output.println("        return new " + platformPackage + "." + platforms[i] + "." + className.name + "Impl();");
-        output.println("    } else if (context instanceof " + Strings.capitalize(platforms[i]) + "ClientContext) {");
-        output.println("        " + className.name + " " + platforms[i] + className.name + " = new " + platformPackage + "." + platforms[i] + "." + className.name + "Impl();");
-        output.println("        return new " + clientPackage + "." + className.name + "ClientImpl((ClientContext)context, " + platforms[i] + className.name + ");");
-      }
-      output.println("    } else {");
-      output.println("        return null;");
-      output.println("    }");
-      output.println("  }");
 
       // create methods
       methodIterator = createMethods.listIterator(0);

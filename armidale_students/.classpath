@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=armidale_students&amp;ivyXmlPath=ivy.xml&amp;confs=*"/>
+	<classpathentry kind="lib" path="/Users/Hosuke/Documents/杂物/gs-core-1.2/gs-core-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

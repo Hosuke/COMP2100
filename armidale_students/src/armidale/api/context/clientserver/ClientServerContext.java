@@ -29,10 +29,10 @@
  */
 package armidale.api.context.clientserver;
 
-import armidale.api.context.Context;
+import java.util.Arrays;
 
+import armidale.api.context.Context;
 import armidale.api.io.*;
-import armidale.api.io.Debug;
 import armidale.api.structures.*;
 
 public abstract class ClientServerContext extends Context {
@@ -118,7 +118,7 @@ public abstract class ClientServerContext extends Context {
       case MessageTypes.START_APPLICATION:
         appUrl = message.readString();
         appArgs = message.readStringArray();
-        debug.message("ClientServerContext", "Got START_APPLICATION " + appUrl + ", args=" + appArgs, debug.COURSE);
+        debug.message("ClientServerContext", "Got START_APPLICATION " + appUrl + ", args=" + Arrays.toString(appArgs), debug.COURSE);
         startApplication(appUrl, appArgs);
         break;
       case MessageTypes.CONSTRUCT:

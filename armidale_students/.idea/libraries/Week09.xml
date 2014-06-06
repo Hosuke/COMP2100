@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Week09">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Week09/showGraph.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Week09/showGrid.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

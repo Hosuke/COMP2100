@@ -190,10 +190,9 @@ public class FrameImpl extends WindowImpl implements Frame {
     //--ARM-- public void setContent(Widget content)
     this.content = (WidgetImpl) content;
     this.content.setPreferredSize(this.getSize());
-    if (content != null) {
+
       ((JFrame) peer).getContentPane().add((JComponent)this.content.peer, BorderLayout.CENTER);
       ((JFrame)peer).pack();
-    }
     //--ARM-- public void setContent(Widget content)
   }
 

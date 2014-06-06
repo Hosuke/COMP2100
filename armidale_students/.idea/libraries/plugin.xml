@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="plugin">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/findbugs-2.0.3/plugin/findbugsCommunalCloud.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/findbugs-2.0.3/plugin/webCloudClient.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
